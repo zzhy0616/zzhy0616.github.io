@@ -359,18 +359,18 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/09/hello-world/" >
+        <a class="abstract-title" href = "/2020/01/09/木块问题/" >
             
-                <span>Hello World</span>
+                <span>木块问题</span>
         </a>
         <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-Mo...
+            输入n，得到编号为0n-1的木块，分别摆放在顺序排列编号为0n-1的位置。现对这些木块进行操作，操作分为四种。
+1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；
+2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；
+3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；
+4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。
+当输入quit时，结束操作并输出0~n-1的位置上的木块情况
+Sample Input10move 9 onto 1m...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -378,6 +378,12 @@ Mo...
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/09</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "STL">STL</a>
+    
+</div>
             
         </div>
     </article>
@@ -600,12 +606,12 @@ Mo...
     
     
     
-    <div class="archive-year"> 2019 </div>
+    <div class="archive-year"> 2020 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2019/10/06/二叉树/" >算法训练营———— 二叉排序树</a>
+            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "/2020/01/09/木块问题/" >木块问题</a>
         </li>
     
     
@@ -614,12 +620,12 @@ Mo...
     
         </ul>
     
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/01/09/hello-world/" >Hello World</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2019/10/06/二叉树/" >算法训练营———— 二叉排序树</a>
         </li>
     
     </div>
@@ -628,6 +634,8 @@ Mo...
     <div class="sidebar-tags-name">
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

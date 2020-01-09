@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Zzhy&#39;s Blog</title>
+    <title>木块问题 · Zzhy&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Zzhy&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">木块问题</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Zzhy's Blog</a>
 </header>
@@ -220,24 +231,69 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            木块问题
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "STL">STL</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">557</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/09</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,52 +394,48 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/06/二叉树/" >
-            
-                <span>算法训练营———— 二叉排序树</span>
-        </a>
-        <div class="abstract-content">
-            时间限制：2s，空间256MB问题描述给定一个1到n的排列（无重复元素），按顺序依次插入到一棵二叉排序树中，请你将这棵二叉树前序遍历和后序遍历输出。
-保证树高不超过50 。
-输入第一行一个整数n。（1 ≤ n ≤ 100000）
-接下来一行表示为n个整数，代表1到n的一个排列。
-输出输出所建成的二叉树的前序遍历和后序遍历。
-
-10
-
-2 6 9 3 5 7 10 8 4 1
-
-2 1 6 3 5 4 9 7 8 10
-
-1 4 5 3 8 7 10 9 6 2
-1234567891011121314151617181920212223242526272829303132333435363...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉树">二叉树</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>输入n，得到编号为0<del>n-1的木块，分别摆放在顺序排列编号为0</del>n-1的位置。现对这些木块进行操作，操作分为四种。</p>
+<p>1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；</p>
+<p>2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；</p>
+<p>3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；</p>
+<p>4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。</p>
+<p>当输入quit时，结束操作并输出0~n-1的位置上的木块情况</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>10<br>move 9 onto 1<br>move 8 over 1<br>move 7 over 1<br>move 6 over 1<br>pile 8 over 6<br>pile 8 over 5<br>move 2 over 1<br>move 4 over 9<br>quit</p>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><p>0: 0<br>1: 1 9 2 4<br>2:<br>3: 3<br>4:<br>5: 5 8 7 6<br>6:<br>7:<br>8:<br>9:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pile[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//找木块a所在的pile和height， 以引用的形式返回调用者</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_block</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span>&amp; p, <span class="keyword">int</span>&amp; h)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> ( p = <span class="number">0</span>; p &lt; n; p++)</span><br><span class="line">		<span class="keyword">for</span> ( h = <span class="number">0</span>; h &lt; pile[p].<span class="built_in">size</span>(); h++)</span><br><span class="line">			<span class="keyword">if</span> (pile[p][h] == a) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第p堆高度为h的木块上方的所有木块移回原位置</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear_above</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h + <span class="number">1</span>; i &lt; pile[p].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> b = pile[p][i];</span><br><span class="line">		pile[b].push_back(b);</span><br><span class="line">	&#125;</span><br><span class="line">	pile[p].resize(h + <span class="number">1</span>); <span class="comment">//只保留下标0~h的元素  .resize()改变大小</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第p堆高度为h及其上方的木块整体移动到p2堆的顶部</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pile_onto</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> h, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h; i &lt; pile[p].<span class="built_in">size</span>(); i++)</span><br><span class="line">		pile[p2].push_back(pile[p][i]);</span><br><span class="line">	pile[p].resize(h);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d:"</span>, i);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; pile[i].<span class="built_in">size</span>(); j++) <span class="built_in">printf</span>(<span class="string">" %d"</span>, pile[i][j]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">string</span> s1, s2;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) pile[i].push_back(i);</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; a &gt;&gt; s2 &gt;&gt; b) &#123;</span><br><span class="line">		<span class="keyword">int</span> pa, pb, ha, hb;</span><br><span class="line">		find_block(a, pa, ha);</span><br><span class="line">		find_block(b, pb, hb);</span><br><span class="line">		<span class="keyword">if</span> (pa == pb) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (s2 == <span class="string">"onto"</span>) clear_above(pb, hb);</span><br><span class="line">		<span class="keyword">if</span> (s1 == <span class="string">"move"</span>) clear_above(pa, ha);</span><br><span class="line">		pile_onto(pa, ha, pb);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">print</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/10/06/二叉树/" title= "算法训练营———— 二叉排序树">
+                    <div class="prevTitle">算法训练营———— 二叉排序树</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -582,6 +634,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
