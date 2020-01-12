@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">72</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">187</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -390,9 +390,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Gnomesort-Naive-Improved"><a href="#Gnomesort-Naive-Improved" class="headerlink" title="Gnomesort: Naive + Improved"></a>Gnomesort: Naive + Improved</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">naiveGnomesort(s[], n)</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; )&#123;</span><br><span class="line">      <span class="keyword">if</span>(i &lt; <span class="number">1</span> || s[i<span class="number">-1</span>] &lt;= s[i]) </span><br><span class="line">      i++;</span><br><span class="line">      <span class="keyword">else</span> </span><br><span class="line">        &#123;  </span><br><span class="line">            swap ( s[ i<span class="number">-1</span>], s[i]);</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">improveGnomesort(s[], n)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; n ; k++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; <span class="number">0</span> &lt; i &amp;&amp; s[i<span class="number">-1</span>] &gt; s[i]; i-- )</span><br><span class="line">    swap( s[i<span class="number">-1</span>], s[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="Gnomesort-Naive-Improved"><a href="#Gnomesort-Naive-Improved" class="headerlink" title="Gnomesort: Naive + Improved"></a>Gnomesort: Naive + Improved</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">naiveGnomesort(s[], n) <span class="comment">//single loop but O(n^2)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; )&#123;</span><br><span class="line">      <span class="keyword">if</span>(i &lt; <span class="number">1</span> || s[i<span class="number">-1</span>] &lt;= s[i]) <span class="comment">//GREEDY</span></span><br><span class="line">      i++;<span class="comment">//inefficient backtracking</span></span><br><span class="line">      <span class="keyword">else</span> </span><br><span class="line">        &#123;  </span><br><span class="line">            swap ( s[ i<span class="number">-1</span>], s[i]);</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">improveGnomesort(s[], n)<span class="comment">//nested loops and still o(n^2) </span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; n ; k++) <span class="comment">//Since s[0,k) is always sorted, we can</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = k; <span class="number">0</span> &lt; i &amp;&amp; s[i<span class="number">-1</span>] &gt; s[i]; i-- ) <span class="comment">//backtrack to k and rescan</span></span><br><span class="line">    swap( s[i<span class="number">-1</span>], s[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Bubblesort-Basic"><a href="#Bubblesort-Basic" class="headerlink" title="Bubblesort: Basic"></a>Bubblesort: Basic</h2>
+<h2 id="Bubblesort-Basic"><a href="#Bubblesort-Basic" class="headerlink" title="Bubblesort: Basic"></a>Bubblesort: Basic</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>( lo &lt; hi)</span><br><span class="line">  bubble( lo, hi--);<span class="comment">//逐趟做扫描交换</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>(++lo &lt; hi)&#123;<span class="comment">//从左向右，逐一检查各对相邻元素</span></span><br><span class="line">    <span class="keyword">if</span>( _elem[lo<span class="number">-1</span>] &gt; _elem[lo] )<span class="comment">//若逆序</span></span><br><span class="line">      swap( _elem[lo<span class="number">-1</span>], _elem[lo]);<span class="comment">//交换</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -520,6 +520,10 @@ height:50vh;
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 3
@@ -565,9 +569,9 @@ height:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
-    
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

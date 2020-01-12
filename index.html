@@ -364,7 +364,7 @@ height:50vh;
                 <span>排序 Sorting</span>
         </a>
         <div class="abstract-content">
-            Gnomesort: Naive + Improved123456789101112131415naiveGnomesort(s[], n)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i])       i++;      else         &#123;              swap ( s[ i-1], s[i]);            i--;        &#125;  &#125;improveGnomesort(s[], n)&#123;  for(int k = ...
+            Gnomesort: Naive + Improved12345678910111213141516naiveGnomesort(s[], n) //single loop but O(n^2)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i]) //GREEDY      i++;//inefficient backtracking      else         &#123;              swap ( s[ i-1], s[i]);            i--;     ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -623,6 +623,10 @@ Sample Input10move 9 ...
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 3
@@ -668,9 +672,9 @@ Sample Input10move 9 ...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
-    
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
