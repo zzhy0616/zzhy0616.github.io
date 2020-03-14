@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Binary · Zzhy&#39;s Blog</title>
+    <title>Zzhy&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >Zzhy&#39;s Blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Binary</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>Zzhy's Blog</a>
 </header>
@@ -231,69 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            Binary
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分">二分</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">110</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/01/14</span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -394,45 +338,97 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h2 id="二分搜索（Binary-Search）"><a href="#二分搜索（Binary-Search）" class="headerlink" title="二分搜索（Binary Search）"></a>二分搜索（Binary Search）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">static</span> Rank <span class="title">binSearch</span> <span class="params">(T* s,T <span class="keyword">const</span> &amp; e, Rank lo, Rank hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>( lo &lt; hi)&#123;<span class="comment">//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)</span></span><br><span class="line">        Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;<span class="comment">//以中点为轴点，经比较后确定深入</span></span><br><span class="line">        e &lt; S[mi] ? hi = mi : lo = mi + <span class="number">1</span>; <span class="comment">//[lo,mi) 或[mi,hi)</span></span><br><span class="line">    &#125; <span class="comment">//出口时，A[lo = hi]为大于e的最小元素</span></span><br><span class="line">    <span class="keyword">return</span> --lo;<span class="comment">//故lo - 1即不大于e的元素的最大秩</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/01/14/高精度/" >
+            
+                <span>高精度</span>
+        </a>
+        <div class="abstract-content">
+            高精度加法 至此，就可以进行任意你想进行的运算了，首先我们来看看加法，其实上面的代码已经差不多写出来了。
+高精度加法Code
+12345678910111213141516171819202122232425#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;cmath&gt;#include&lt;algorithm&gt;using namespace std;int a[6666],b[6666],c[6666];int lena,lenb,lenc;char s1[6666]...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/14</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
     </article>
-    <!-- license  -->
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/01/10/排序 Sorting/" >
+            
+                <span>排序 Sorting</span>
+        </a>
+        <div class="abstract-content">
+            Gnomesort: Naive + Improved12345678910111213141516naiveGnomesort(s[], n) //single loop but O(n^2)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i]) //GREEDY      i++;//inefficient backtracking      else         &#123;              swap ( s[ i-1], s[i]);            i--;     ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/01/09/木块问题/" >
+            
+                <span>木块问题</span>
+        </a>
+        <div class="abstract-content">
+            输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。
+1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；
+2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；
+3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；
+4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。
+当输入quit时，结束操作并输出0~n-1的位置上的木块情况
+Sample Input10move 9 ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "STL">STL</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/01/17/STL/" title= "STL">
-                    <div class="nextTitle">STL</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/01/14/队列/" title= "队列">
-                    <div class="prevTitle">队列</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2020/">&#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
+    </nav>
     
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -825,8 +821,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

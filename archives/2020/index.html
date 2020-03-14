@@ -13,9 +13,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="author" content="zzhy">
+    <meta name="author" content="Poller">
     <meta name="renderer" content="webkit">
-    <meta name="copyright" content="zzhy">
+    <meta name="copyright" content="Poller">
     
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
@@ -346,6 +346,152 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/10/MST最小生成树/" >
+            
+                <span>MST最小生成树</span>
+        </a>
+        <div class="abstract-content">
+            问题描述Z国有 n 个城市和 m 条双向道路，每条道路连接了两个不同的城市，保证所有城市之间都可以通过这些道路互达。每条道路都有一个载重量限制，这限制了通过这条道路的货车最大的载重量。道路的编号从 1 至 m 。巧合的是，所有道路的载重量限制恰好都与其编号相同。
+现在，要挑选出若干条道路，将它们升级成高速公路，并满足如下要求：
+所有城市之间都可以通过高速公路互达。对于任意两个城市 u,v 和足够聪明的货车司机：只经过高速公路从 u 到达 v 能够装载货物的最大重量，与经过任意道路从 u 到达 v 能够装载货物的最大重量相等。（足够聪明的司机只关注载重量，并不在意绕路）在上面的前提下，要求...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/10/最短路Dijkstra/" >
+            
+                <span>最短路Dijkstra</span>
+        </a>
+        <div class="abstract-content">
+            问题描述给定一张 n 个点的无向带权图，节点的编号从 1 至 n，求从 S 到 T 的最短路径长度。
+输入格式第一行 4 个数 n,m,S, T，分别表示点数、边数、起点、终点。
+接下来 m 行，每行 3 个正整数 u,v,w，描述一条 u 到 v 的双向边，边权为 w。
+保证 1&lt;=u,v&lt;=n。
+输出格式输出一行一个整数，表示 S 到 T 的最短路。
+样例输入1234567891011127 11 5 42 4 21 4 37 2 23 4 35 7 57 3 36 1 16 3 42 4 35 6 37 2 1
+
+样例输出17
+
+12345678910111213141...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/14/成绩排序/" >
+            
+                <span>成绩排序</span>
+        </a>
+        <div class="abstract-content">
+            描述有 n 名学生，它们的学号分别是 1,2,…,n。这些学生都选修了邓老师的算法训练营、数据结构训练营这两门课程。
+学期结束了，所有学生的课程总评都已公布，所有总评分数都是 [0,100] 之间的整数。巧合的是，不存在两位同学，他们这两门课的成绩都完全相同。
+邓老师希望将这些所有的学生按这两门课程的总分进行降序排序，特别地，如果两位同学的总分相同，那邓老师希望把算法训练营得分更高的同学排在前面。由于上面提到的巧合，所以，这样排名就可以保证没有并列的同学了。
+邓老师将这个排序任务交给了他的助教。可是粗心的助教没有理解邓老师的要求，将所有学生按学号进行了排序。
+邓老师希望知道，助教的排序结...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/14</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/05/位运算/" >
+            
+                <span>位运算</span>
+        </a>
+        <div class="abstract-content">
+            
+
+
+符号
+描述
+运算规则
+
+
+
+&amp;
+与
+两个位都为1时，结果才为1
+
+
+|
+或
+两个位都为0时，结果才为0
+
+
+^
+异或
+两个位相同为0，相异为1
+
+
+~
+非
+0变1，1变0
+
+
+&lt;&lt;
+左移
+各二进位全部左移若干位，高位丢弃，低位补0
+
+
+&gt;&gt;
+右移
+各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的补0（逻辑右移
+
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/05</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/03/二分答案分组/" >
             
                 <span>二分答案 分组</span>
@@ -510,90 +656,11 @@ Sample Outputabcabcd...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/14/高精度/" >
-            
-                <span>高精度</span>
-        </a>
-        <div class="abstract-content">
-            高精度加法 至此，就可以进行任意你想进行的运算了，首先我们来看看加法，其实上面的代码已经差不多写出来了。
-高精度加法Code
-12345678910111213141516171819202122232425#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;cmath&gt;#include&lt;algorithm&gt;using namespace std;int a[6666],b[6666],c[6666];int lena,lenb,lenc;char s1[6666]...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/14</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/10/排序 Sorting/" >
-            
-                <span>排序 Sorting</span>
-        </a>
-        <div class="abstract-content">
-            Gnomesort: Naive + Improved12345678910111213141516naiveGnomesort(s[], n) //single loop but O(n^2)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i]) //GREEDY      i++;//inefficient backtracking      else         &#123;              swap ( s[ i-1], s[i]);            i--;     ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/09/木块问题/" >
-            
-                <span>木块问题</span>
-        </a>
-        <div class="abstract-content">
-            输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。
-1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；
-2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；
-3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；
-4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。
-当输入quit时，结束操作并输出0~n-1的位置上的木块情况
-Sample Input10move 9 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "STL">STL</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -772,9 +839,53 @@ Sample Input10move 9 ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 10
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -787,6 +898,26 @@ Sample Input10move 9 ...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2020/03/10/MST最小生成树/" >MST最小生成树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2020/03/10/最短路Dijkstra/" >最短路Dijkstra</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "/2020/02/14/成绩排序/" >成绩排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2020/02/05/位运算/" >位运算</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -902,7 +1033,7 @@ jsonContent:
     <script>
     var siteMeta = {
         root: "/",
-        author: "zzhy"
+        author: "Poller"
     }
 </script>
     <!-- CDN failover -->

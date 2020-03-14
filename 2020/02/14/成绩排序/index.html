@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Binary · Zzhy&#39;s Blog</title>
+    <title>成绩排序 · Zzhy&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Zzhy&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Binary</a>
+                <a href="#" class="post-name">成绩排序</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Binary
+            成绩排序
             <!-- 404 -->
             
         </h1>
@@ -264,20 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分">二分</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">110</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">886</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/01/14</span>
+                    <span class="post-intro-time">2020/02/14</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -396,7 +390,20 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="二分搜索（Binary-Search）"><a href="#二分搜索（Binary-Search）" class="headerlink" title="二分搜索（Binary Search）"></a>二分搜索（Binary Search）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">static</span> Rank <span class="title">binSearch</span> <span class="params">(T* s,T <span class="keyword">const</span> &amp; e, Rank lo, Rank hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>( lo &lt; hi)&#123;<span class="comment">//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)</span></span><br><span class="line">        Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;<span class="comment">//以中点为轴点，经比较后确定深入</span></span><br><span class="line">        e &lt; S[mi] ? hi = mi : lo = mi + <span class="number">1</span>; <span class="comment">//[lo,mi) 或[mi,hi)</span></span><br><span class="line">    &#125; <span class="comment">//出口时，A[lo = hi]为大于e的最小元素</span></span><br><span class="line">    <span class="keyword">return</span> --lo;<span class="comment">//故lo - 1即不大于e的元素的最大秩</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>有 n 名学生，它们的学号分别是 1,2,…,n。这些学生都选修了邓老师的算法训练营、数据结构训练营这两门课程。</p>
+<p>学期结束了，所有学生的课程总评都已公布，所有总评分数都是 [0,100] 之间的整数。巧合的是，不存在两位同学，他们这两门课的成绩都完全相同。</p>
+<p>邓老师希望将这些所有的学生按这两门课程的总分进行降序排序，特别地，如果两位同学的总分相同，那邓老师希望把算法训练营得分更高的同学排在前面。由于上面提到的巧合，所以，这样排名就可以保证没有并列的同学了。</p>
+<p>邓老师将这个排序任务交给了他的助教。可是粗心的助教没有理解邓老师的要求，将所有学生按学号进行了排序。</p>
+<p>邓老师希望知道，助教的排序结果中，存在多少逆序对。</p>
+<p>如果对于两个学生 (i,j) 而言，i 被排在了 j 前面，并且i 本应被排在 j 的后面，我们就称 (i,j) 是一个逆序对。</p>
+<p>请你先帮邓老师把所有学生按正确的顺序进行排名，再告诉他助教的错误排名中逆序对的数目。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行一个整数 n，表示学生的个数。</p>
+<p>第 2 行到第 n+1 行，每行 2 个用空格隔开的非负整数，第 i+1 行的两个数依次表示学号为 i 的同学的算法训练营、数据结构训练营的总评成绩。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出包含 n+1 行。</p>
+<p>前 n 行表示正确的排序结果，每行 4 个用空格隔开的整数，第 i 行的数依次表示排名为 i 的同学的学号、总分、算法训练营成绩、数据结构训练营成绩。</p>
+<p>第 n+1 行一个整数，表示助教的错误排名中逆序对的数目。</p>
+<p>可以用起泡对成绩进行排序<br>同时，每交换一次逆序对数量减一，因此可以在排序过程中对逆序对进行排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//n:学生个数</span></span><br><span class="line"><span class="comment">//A：算法训练营成绩</span></span><br><span class="line"><span class="comment">//DS：各同学的数据结构训练营成绩</span></span><br><span class="line"><span class="comment">//返回值：将要输出的数次一次加入到返回值中 </span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getAnswer(<span class="keyword">int</span> n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; DS) &#123;</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum, id;</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;<span class="comment">//返回值</span></span><br><span class="line">   </span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">   	  id.push_back(i + <span class="number">1</span>);</span><br><span class="line">   	  sum.push_back(A[i] + DS[i]);</span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">int</span> cnt = <span class="number">0</span>;<span class="comment">//记录逆序对个数</span></span><br><span class="line">   <span class="comment">//起泡排序</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">   		<span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt; <span class="number">0</span>; --j)</span><br><span class="line">		   <span class="keyword">if</span>(sum[j] &gt; sum[j - <span class="number">1</span>] || (sum[j] == sum[j - <span class="number">1</span>] &amp;&amp; A[j] &gt; A[j - <span class="number">1</span>] ))&#123;</span><br><span class="line">		   	swap(id[j], id[j - <span class="number">1</span>]);</span><br><span class="line">		   	swap(sum[j], sum[j - <span class="number">1</span>]);</span><br><span class="line">		   	swap(A[j], A[j - <span class="number">1</span>]);</span><br><span class="line">		   	swap(DS[j], DS[j - <span class="number">1</span>]);</span><br><span class="line">		   	++cnt;</span><br><span class="line">		   &#125; </span><br><span class="line">	<span class="comment">//整理返回值并且返回</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">		ans.push_back(id[i]);</span><br><span class="line">		ans.push_back(sum[i]);</span><br><span class="line">		ans.push_back(A[i]);</span><br><span class="line">		ans.push_back(DS[i]);</span><br><span class="line">	&#125; </span><br><span class="line">	ans.push_back(cnt);</span><br><span class="line">	<span class="keyword">return</span> ans;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A, DS;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> a, ds;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;ds);</span><br><span class="line">        A.push_back(a);</span><br><span class="line">        DS.push_back(ds);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans = getAnswer(n, A, DS);</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d %d %d\n"</span>, ans[cnt], ans[cnt + <span class="number">1</span>], ans[cnt + <span class="number">2</span>], ans[cnt + <span class="number">3</span>]);</span><br><span class="line">        cnt += <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[cnt]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -405,16 +412,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/01/17/STL/" title= "STL">
-                    <div class="nextTitle">STL</div>
+                <a href= "/2020/03/10/最短路Dijkstra/" title= "最短路Dijkstra">
+                    <div class="nextTitle">最短路Dijkstra</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/01/14/队列/" title= "队列">
-                    <div class="prevTitle">队列</div>
+                <a href= "/2020/02/05/位运算/" title= "位运算">
+                    <div class="prevTitle">位运算</div>
                 </a>
             
         </li>
