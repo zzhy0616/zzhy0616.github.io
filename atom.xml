@@ -213,7 +213,7 @@ using namespace st</summary>
     <link href="https://zzhy0616.github.io/2020/02/03/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E5%88%86%E7%BB%84/"/>
     <id>https://zzhy0616.github.io/2020/02/03/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E5%88%86%E7%BB%84/</id>
     <published>2020-02-03T15:41:51.000Z</published>
-    <updated>2020-03-10T12:08:37.586Z</updated>
+    <updated>2020-11-14T14:56:26.954Z</updated>
     
     <content type="html"><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>有n个正整数排成一排，你要将这些数分成m份（同一份中的数字都是连续的，不能隔开），同时数字之和最大的那一份的数字之和尽量小。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入的第一行包含两个正整数n，m。</p><p>接下来一行包含n个正整数。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出一个数，表示最优方案中，数字之和最大的那一份的数字之和。</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">include &lt;bits&#x2F;stdc++.h&gt;using namespace std;&#x2F;&#x2F;判断数组a是否能分成不超过m份， 满足每份都不超过d&#x2F;&#x2F; n:数组a的大小&#x2F;&#x2F;返回值：若能分成不超过m份， 返回true， 否则返回falsebool check(long long d, int n, int m, vector&lt;int&gt; &amp;a)&#123;    long long sum &#x3D; 0; &#x2F;&#x2F;记录当前一份数字的和    int cnt &#x3D; 1;&#x2F;&#x2F;在每一份数字之和不超过d的情况下，至少要分成的份数    for( int i &#x3D; 0; i &lt; n; i++)&#123;        if(a[i] &gt; d) &#x2F;&#x2F; 如果单个元素超过d， 直接结束返回false           return false;                sum +&#x3D; a[i];&#x2F;&#x2F; 将a[i]加入当前这一份中        if(sum &gt; d)&#123;            sum &#x3D; a[i];            ++cnt;        &#125; &#x2F;&#x2F;加入a[i]后，若超过d，至少分成的数加一    &#125;    return cnt &lt;&#x3D; m; &#125;long long getAnswer(int n, int m, vector&lt;int&gt; a) &#123;    &#x2F;&#x2F; l表示答案的下界，r表示答案的上界    long long l &#x3D; 1, r &#x3D; 0;   &#x2F;&#x2F;求出答案的上界    for(int i &#x3D; 0; i &lt; n; i++)&#123;        r +&#x3D; a[i];    &#125;   &#x2F;&#x2F; 二分答案    while(l &lt;&#x3D; r)&#123;        long long mid &#x3D; (l + r) &gt;&gt; 1;        if(check(mid, n , m, a))            r &#x3D; mid - 1;        else             l &#x3D; mid + 1;    &#125;    return  r + 1; &#125;int main() &#123;    int n, m;    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);    vector&lt;int&gt; a;    a.resize(n);    for (int i &#x3D; 0; i &lt; n; ++i)        scanf(&quot;%d&quot;, &amp;a[i]);    printf(&quot;%lld\n&quot;, getAnswer(n, m, a));    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
     
@@ -293,28 +293,6 @@ using namespace st</summary>
   
   <entry>
     <title>学习笔记</title>
-    <link href="https://zzhy0616.github.io/2020/01/14/2020.8.14%20note/"/>
-    <id>https://zzhy0616.github.io/2020/01/14/2020.8.14%20note/</id>
-    <published>2020-01-14T12:39:00.000Z</published>
-    <updated>2020-11-14T05:37:03.839Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;queue&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    queue&lt;int&gt; que;    que.push(1);    que.push(2);    que.push(3);    printf(&quot;%d\n&quot;, que.front());    que.pop();    printf(&quot;%d\n&quot;, que.front());    que.pop();    printf(&quot;%d\n&quot;, que.front());    que.poo();    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="深度优先搜索DFS"><a href="#深度优先搜索DFS" class="headerlink" title="深度优先搜索DFS"></a>深度优先搜索DFS</h1><p>简单来说就是一条路莽到底</p><p>部分和问题</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int a[MAX_n];int n, k;&#x2F;&#x2F; 已经从前i项得到了和sum， 然后对于i项之后的进行分支bool dfs(int i, int sum)&#123;    &#x2F;&#x2F;如果前i项都计算过了则返回sum是否与k相等    if(i &#x3D;&#x3D; n) return sum &#x3D;&#x3D; k;        &#x2F;&#x2F;不加上a[i]的情况    if(dfs(i + 1, sum)) return true;    &#x2F;&#x2F;加上a[i]的情况    if(dfs(i + 1, sum + a[i])) return true;    &#x2F;&#x2F;无论是否加上a[i]都不能凑成k就返回false    return false;&#125;void solve()&#123;    if(dfs(0,0)) printf(&quot;Yes\n&quot;);    else printf(&quot;No\n&quot;);&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Stack&quot;&gt;&lt;a href=&quot;#Stack&quot; class=&quot;headerlink&quot; title=&quot;Stack&quot;&gt;&lt;/a&gt;Stack&lt;/h1&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;c</summary>
-      
-    
-    
-    
-    <category term="学习笔记" scheme="https://zzhy0616.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记</title>
     <link href="https://zzhy0616.github.io/2020/01/14/2020.8.15%20note/"/>
     <id>https://zzhy0616.github.io/2020/01/14/2020.8.15%20note/</id>
     <published>2020-01-14T12:39:00.000Z</published>
@@ -327,6 +305,28 @@ using namespace st</summary>
       
     <summary type="html">&lt;h1 id=&quot;BFS&quot;&gt;&lt;a href=&quot;#BFS&quot; class=&quot;headerlink&quot; title=&quot;BFS&quot;&gt;&lt;/a&gt;BFS&lt;/h1&gt;&lt;p&gt;对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)&lt;/p&gt;
 &lt;pre class=&quot;line-number</summary>
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://zzhy0616.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记</title>
+    <link href="https://zzhy0616.github.io/2020/01/14/2020.8.14%20note/"/>
+    <id>https://zzhy0616.github.io/2020/01/14/2020.8.14%20note/</id>
+    <published>2020-01-14T12:39:00.000Z</published>
+    <updated>2020-11-14T05:37:03.839Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;queue&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    queue&lt;int&gt; que;    que.push(1);    que.push(2);    que.push(3);    printf(&quot;%d\n&quot;, que.front());    que.pop();    printf(&quot;%d\n&quot;, que.front());    que.pop();    printf(&quot;%d\n&quot;, que.front());    que.poo();    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="深度优先搜索DFS"><a href="#深度优先搜索DFS" class="headerlink" title="深度优先搜索DFS"></a>深度优先搜索DFS</h1><p>简单来说就是一条路莽到底</p><p>部分和问题</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int a[MAX_n];int n, k;&#x2F;&#x2F; 已经从前i项得到了和sum， 然后对于i项之后的进行分支bool dfs(int i, int sum)&#123;    &#x2F;&#x2F;如果前i项都计算过了则返回sum是否与k相等    if(i &#x3D;&#x3D; n) return sum &#x3D;&#x3D; k;        &#x2F;&#x2F;不加上a[i]的情况    if(dfs(i + 1, sum)) return true;    &#x2F;&#x2F;加上a[i]的情况    if(dfs(i + 1, sum + a[i])) return true;    &#x2F;&#x2F;无论是否加上a[i]都不能凑成k就返回false    return false;&#125;void solve()&#123;    if(dfs(0,0)) printf(&quot;Yes\n&quot;);    else printf(&quot;No\n&quot;);&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Stack&quot;&gt;&lt;a href=&quot;#Stack&quot; class=&quot;headerlink&quot; title=&quot;Stack&quot;&gt;&lt;/a&gt;Stack&lt;/h1&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;c</summary>
       
     
     
