@@ -221,7 +221,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="二分搜索（Binary-Search）">二分搜索（Binary Search）</h2>
+                <a id="more"></a>
+<h2 id="二分搜索（Binary-Search）">二分搜索（Binary Search）</h2>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">static</span> Rank <span class="title">binSearch</span> <span class="params">(T* s,T <span class="keyword">const</span> &amp; e, Rank lo, Rank hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>( lo &lt; hi)&#123;<span class="comment">//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)</span></span><br><span class="line">        Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;<span class="comment">//以中点为轴点，经比较后确定深入</span></span><br><span class="line">        e &lt; S[mi] ? hi = mi : lo = mi + <span class="number">1</span>; <span class="comment">//[lo,mi) 或[mi,hi)</span></span><br><span class="line">    &#125; <span class="comment">//出口时，A[lo = hi]为大于e的最小元素</span></span><br><span class="line">    <span class="keyword">return</span> --lo;<span class="comment">//故lo - 1即不大于e的元素的最大秩</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
 

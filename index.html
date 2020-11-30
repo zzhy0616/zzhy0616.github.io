@@ -230,11 +230,12 @@
             
         </h3>
         <div class="post-content-preview">
-            二叉树的编号
+            
+二叉树的编号
 题目大意
 https://uva.onlinejudge.org/external/6/p679.pdf
 Code
-1234567891011121314151617181920212223242526272829303132333435363738394041/* 运算量较大的代码*/#include &lt;iostream&gt;#include &lt;cstdio&g......
+1234567891011121314151617181920212223242526272829303132333435363738394041/* 运算量较大的代码*/#include &lt;iostream&gt;#include &lt;cstdio&......
         </div>
     </a>
     
@@ -264,9 +265,10 @@ Code
     <a href="/2020/11/07/搜索集合-1/">
 
         <div class="post-content-preview">
-            特殊状态的枚举
+            
+特殊状态的枚举
 关于函数next_pumutation，可以把n个元素共n！种排列枚举出来
-123456789101112131415161718192021222324252627282930313233343536bool  used[MAX_N];int perm[MAX_N];//生成&#123;0， 1， 2 ，3， 4 ，... n- 1&#125; 的 n！序列void .........
+123456789101112131415161718192021222324252627282930313233343536bool  used[MAX_N];int perm[MAX_N];//生成&#123;0， 1， 2 ，3， 4 ，... n- 1&#125; 的 n！序列void.........
         </div>
     </a>
     
@@ -296,9 +298,10 @@ Code
     <a href="/2020/09/20/unionfind/">
 
         <div class="post-content-preview">
-            经典并查集题目
+            
+经典并查集题目
 find（）和union操作
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;bits/stdc++.h&gt;using .........
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;bits/stdc++.h&gt;using.........
         </div>
     </a>
     
@@ -329,6 +332,7 @@ find（）和union操作
 
         <div class="post-content-preview">
             
+
 
 
 符号
@@ -365,7 +369,7 @@ find（）和union操作
 
 &gt;&gt;
 右移
-各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右.........
+各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术.........
         </div>
     </a>
     
@@ -395,14 +399,15 @@ find（）和union操作
     <a href="/2020/02/03/二分答案分组/">
 
         <div class="post-content-preview">
-            描述
+            
+描述
 有n个正整数排成一排，你要将这些数分成m份（同一份中的数字都是连续的，不能隔开），同时数字之和最大的那一份的数字之和尽量小。
 输入
 输入的第一行包含两个正整数n，m。
 接下来一行包含n个正整数。
 输出
 输出一个数，表示最优方案中，数字之和最大的那一份的数字之和。
-12345678910111213141516171819202122232425262728293031323334.........
+1234567891011121314151617181920212223242526272829303132333.........
         </div>
     </a>
     
@@ -432,13 +437,14 @@ find（）和union操作
     <a href="/2020/01/17/链表/">
 
         <div class="post-content-preview">
-            链表可以使用结构体来存储 struct slist {int prev, value, next;}list[enough];
+            
+链表可以使用结构体来存储 struct slist {int prev, value, next;}list[enough];
 也可以直接使用若干个数组来实现
 int prev[enough], value[enough], next[enough];
 int del(int x) &#123; 
 // 删除链表中的 x 
 next[prev[x]] = next[x]; 
-prev[.........
+prev.........
         </div>
     </a>
     
@@ -468,10 +474,11 @@ prev[.........
     <a href="/2020/01/17/STL/">
 
         <div class="post-content-preview">
-            pair 结构体
+            
+pair 结构体
 ▶ 可以将两种类型融合成一种类型
 ▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair&lt;int, int&gt; range; range.first = 1, range.second = 3;
-▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first = 12, p..........
+▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first = 12, p.........
         </div>
     </a>
     
@@ -501,8 +508,9 @@ prev[.........
     <a href="/2020/01/14/Binary/">
 
         <div class="post-content-preview">
-            二分搜索（Binary Search）
-1234567template &lt;typename T&gt; static Rank binSearch (T* s,T const &amp; e, Rank lo, Rank hi)&#123;    while( lo &lt; hi)&#123;//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)       .........
+            
+二分搜索（Binary Search）
+1234567template &lt;typename T&gt; static Rank binSearch (T* s,T const &amp; e, Rank lo, Rank hi)&#123;    while( lo &lt; hi)&#123;//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)      .........
         </div>
     </a>
     
@@ -532,8 +540,9 @@ prev[.........
     <a href="/2020/01/14/2020.8.14 note/">
 
         <div class="post-content-preview">
-            Stack
-123456789101112131415161718#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&quo.........
+            
+Stack
+123456789101112131415161718#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&qu.........
         </div>
     </a>
     
@@ -563,9 +572,10 @@ prev[.........
     <a href="/2020/01/14/2020.8.15 note/">
 
         <div class="post-content-preview">
-            BFS
+            
+BFS
 对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)
-123456789101112131415161718192021222324252627282930313233343536373839404142const int INF = 100000000;typedef pair&lt;int, int&gt; P;//输入char maze[MAX_n.........
+123456789101112131415161718192021222324252627282930313233343536373839404142const int INF = 100000000;typedef pair&lt;int, int&gt; P;//输入char maze[MAX_.........
         </div>
     </a>
     
@@ -700,7 +710,7 @@ prev[.........
         
     <h5>归档</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">8</span></li></ul>
     </div>
 
         <hr>
