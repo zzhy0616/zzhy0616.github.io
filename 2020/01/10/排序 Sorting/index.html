@@ -1,718 +1,499 @@
 <!DOCTYPE html>
-<html  lang="zh-CN" >
+<html lang="en">
+
+<!-- Head tag -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#fff" id="theme-color">
-  <meta name="description" content="Pollar&#39;s Blog">
-  <link rel="icon" href="/img/logo.png">
-  <title>排序 Sorting</title>
-  
-  
-  <meta property="og:title" content="排序 Sorting">
-  
-  
-  <meta property="og:url" content="https://zzhy0616.github.io/2020/01/10/%E6%8E%92%E5%BA%8F%20Sorting/index.html">
-  
-  
-  <meta property="og:img" content="/img/avater.jpg">
-  
-  
-  
-  <meta property="og:type" content="article">
-  <meta property="og:article:published_time" content="2020-01-10">
-  <meta property="og:article:modified_time" content="2020-01-14">
-  <meta property="og:article:author" content="Pollar">
-  
-  
-  
-  
-  
-  <script>
-    // control reverse button
-    var reverseDarkList = {
-      dark: 'light',
-      light: 'dark'
-    };
-    var themeColor = {
-      dark: '#1c1c1e',
-      light: '#fff'
-    }
-    // get the data of css prefers-color-scheme
-    var getCssMediaQuery = function() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    // reverse current darkmode setting function
-    var reverseDarkModeSetting = function() {
-      var setting = localStorage.getItem('user-color-scheme');
-      if(reverseDarkList[setting]) {
-        setting = reverseDarkList[setting];
-      } else if(setting === null) {
-        setting = reverseDarkList[getCssMediaQuery()];
-      } else {
-        return;
-      }
-      localStorage.setItem('user-color-scheme', setting);
-      return setting;
-    };
-    // apply current darkmode setting
-    var setDarkmode = function(mode) {
-      var setting = mode || localStorage.getItem('user-color-scheme');
-      if(setting === getCssMediaQuery()) {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else if(reverseDarkList[setting]) {
-        document.documentElement.setAttribute('data-user-color-scheme', setting);
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
-      }
-    };
-    setDarkmode();
-  </script>
-  <script>
-    function loadScript(url, cb) {
-      var script = document.createElement('script');
-      script.src = url;
-      if (cb) script.onload = cb;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  </script>
-  
-  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
-  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
-  
-  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
-  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
-  
-  
-  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
-  
-  
-  
-  
-  
-  
-  <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
-  
-  
-  
-  
-<link rel="stylesheet" href="/css/main.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          排序 Sorting - null
+        
+    </title>
 
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+    <link rel="canonical" href="https://zzhy0616.github.io/2020/01/10/排序 Sorting/">
 
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+    <!-- Bootstrap Core CSS -->
 
-  
-  
-<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+   
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 
-  
-  
-  
-  
-  
-  
-  <link href="/js/lib/prism/prism-coy.min.css" rel="stylesheet" data-prism="prism-coy">
-  
-  
-  
-<link rel="stylesheet" href="/js/lib/prism/prism-line-numbers.min.css">
 
-  
-  
-  
+    
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+
+    
+<link rel="stylesheet" href="/css/donate.css">
+
+	
+<link rel="stylesheet" href="/css/w3.css">
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 <meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Pollar's Blog" type="application/atom+xml">
 </head>
 
 
-<body>
-  <div class="wrapper">
-    
-    <nav class="navbar">
-  <div class="navbar-logo">
-    <span class="navbar-logo-main">
-      
-      <img class="navbar-logo-img" src="/img/logo.png" alt="logo">
-      
-      <span class="navbar-logo-dsc">Pollar's Blog</span>
-    </span>
-  </div>
-  <div class="navbar-menu">
-    
-    <a href="/" class="navbar-menu-item">
-    
-    首页
-    
-    </a>
-    
-    <a href="/archives" class="navbar-menu-item">
-    
-    归档
-    
-    </a>
-    
-    <a href="/tags" class="navbar-menu-item">
-    
-    标签
-    
-    </a>
-    
-    <a href="/categories" class="navbar-menu-item">
-    
-    分类
-    
-    </a>
-    
-    <a href="/about" class="navbar-menu-item">
-    
-    关于
-    
-    </a>
-    
-    <a href="/links" class="navbar-menu-item">
-    
-    友链
-    
-    </a>
-    
-    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
-    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
-  </div>
-</nav>
-    
-    <div id="local-search" style="display: none;">
-      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
-      <div id="search-content"></div>
-    </div>
-    
-    <div class="section-wrap">
-      <div class="container">
-        <div class="columns">
-          <main class="main-column">
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      排序 Sorting
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2020-01-10T01:55:53.000Z">
-      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
-      <span>2020-01-10</span>
-    </time>
-    
-    
-    <span class="dot"></span>
-    <span>1.3k 字</span>
-    
-  </div>
-  
-  </header>
-  <div id="section" class="post-content">
-    <h2 id="Gnomesort-Naive-Improved"><a href="#Gnomesort-Naive-Improved" class="headerlink" title="Gnomesort: Naive + Improved"></a>Gnomesort: Naive + Improved</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">naiveGnomesort(s[], n) &#x2F;&#x2F;single loop but O(n^2)
-  for(int i &#x3D; 1; i &lt; n; )&#123;
-      if(i &lt; 1 || s[i-1] &lt;&#x3D; s[i]) &#x2F;&#x2F;GREEDY
-      i++;&#x2F;&#x2F;inefficient backtracking
-      else 
-        &#123;  
-            swap ( s[ i-1], s[i]);
-            i--;
-        &#125;
-  &#125;
-improveGnomesort(s[], n)&#x2F;&#x2F;nested loops and still o(n^2) 
-&#123;
-for(int k &#x3D; 1; k &lt; n ; k++) &#x2F;&#x2F;Since s[0,k) is always sorted, we can
-  for(int i &#x3D; k; 0 &lt; i &amp;&amp; s[i-1] &gt; s[i]; i-- ) &#x2F;&#x2F;backtrack to k and rescan
-    swap( s[i-1], s[i]);
-&#125;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Bubblesort-Basic"><a href="#Bubblesort-Basic" class="headerlink" title="Bubblesort: Basic"></a>Bubblesort: Basic</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
-void Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;
-  while( lo &lt; hi)
-  bubble( lo, hi--);&#x2F;&#x2F;逐趟做扫描交换
-&#125;
-template &lt;typename T&gt; 
-void Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;
-  while(++lo &lt; hi)&#123;&#x2F;&#x2F;从左向右，逐一检查各对相邻元素
-    if( _elem[lo-1] &gt; _elem[lo] )&#x2F;&#x2F;若逆序
-      swap( _elem[lo-1], _elem[lo]);&#x2F;&#x2F;交换
-  &#125;
-&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Bubblesort-提前终止"><a href="#Bubblesort-提前终止" class="headerlink" title="Bubblesort: 提前终止"></a>Bubblesort: 提前终止</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
-void Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;
-  while( ! bubble( lo, hi--))&#x2F;&#x2F;逐趟做扫描交换
-&#125;
-template &lt;typename T&gt; 
-bool Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;
-  bool sorted &#x3D; true;
-  while(++lo &lt; hi)&#123;&#x2F;&#x2F;从左向右，逐一检查各对相邻元素
-    if( _elem[lo-1] &gt; _elem[lo] )&#123;&#x2F;&#x2F;若逆序
-      sorted &#x3D; false;
-      swap( _elem[lo-1], _elem[lo]);&#x2F;&#x2F;交换
-  &#125;
-  return sorted;&#x2F;&#x2F;整体有序
-&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Bubblesort-跳过无效起泡"><a href="#Bubblesort-跳过无效起泡" class="headerlink" title="Bubblesort: 跳过无效起泡"></a>Bubblesort: 跳过无效起泡</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; 
-void Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;
-  while( lo &lt; ( hin &#x3D; bubble( lo, hi)))&#x2F;&#x2F;逐趟做扫描交换,直至全序
-&#125;
-template &lt;typename T&gt; 
-bool Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;
-  Rank last &#x3D; lo;
-  while(++lo &lt; hi)&#123;&#x2F;&#x2F;从左向右，逐一检查各对相邻元素
-    if( _elem[lo-1] &gt; _elem[lo] )&#123;&#x2F;&#x2F;若逆序
-      last &#x3D; lo;&#x2F;&#x2F;更新最右侧逆序对位置记录，并
-      swap( _elem[lo-1], _elem[lo]);&#x2F;&#x2F;交换
-  &#125;
-  return last;&#x2F;&#x2F;逆序对均在last以左<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T,int size&gt;
-void sort(T(&amp;array)[size])&#x2F;&#x2F;数组排序模版
-&#123;
-    for(int i&#x3D;0;i&lt;size;i++)&#x2F;&#x2F;从第一个开始遍历数组size次，默认将第一个视为最小元素；
-    &#123;
-        T min&#x3D;array[i];&#x2F;&#x2F;暂时将当前元素当作最小值
-        int k&#x3D;i;&#x2F;&#x2F;记录当前地址
-        for(int j&#x3D;i+1;j&lt;size;j++)&#x2F;&#x2F;遍历未排序元素
-        &#123;
-            if(array[j]&lt;min)&#x2F;&#x2F;如果未排序元素中有比当前值还小的
-            &#123;
-                min&#x3D;array[j];&#x2F;&#x2F;更新最小值
-                k&#x3D;j;&#x2F;&#x2F;更新最小值地址
-            &#125;
-        &#125;
-        if(k!&#x3D;i)&#x2F;&#x2F;当一遍循环结束后如果最小元素不是当前值，将最小元素与当前值进行交换
-        &#123;
-            array[k]&#x3D;array[i];
-            array[i]&#x3D;min;
-
-        &#125;
-    &#125;
-&#125;
-————————————————
-版权声明：本文为CSDN博主「liqiluan」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39352109&#x2F;article&#x2F;details&#x2F;88378108
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="QuickSelect"><a href="#QuickSelect" class="headerlink" title="QuickSelect"></a>QuickSelect</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;typename T&gt; void quickSelect( Vector&lt;T&gt; &amp; A, Rank k)&#123;
-  for(Rank lo &#x3D; 0, hi &#x3D; A.size() -  1; lo &lt; hi; )&#123;
-    Rank i &#x3D; lo, j &#x3D; hi; T pivot &#x3D; A[lo];
-    while(i &lt; j)&#123;
-      while( pivot &lt;&#x3D; A[j] )&#123; j--; A[i] &#x3D; A[j];&#125;
-      while( A[i] &lt;&#x3D; pivot ) &#123; i++; A[j] &#x3D; A[i];&#125;
-    &#125;
-    A[i] &#x3D; pivot;
-    if( k &lt;&#x3D; i ) hi &#x3D; i - 1;
-    if( i &lt;&#x3D; k ) lo &#x3D; i + 1;
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;stdio.h&gt;
-using namespace std;
-int a[100001],temp[100001];
-
-void bin(int l,int r)
-&#123;
-    if(l&#x3D;&#x3D;r) return ;
-    int mid&#x3D;(l+r)&gt;&gt;1;
-    bin(l,mid);
-    bin(mid+1,r);
-    int i&#x3D;l,j&#x3D;mid+1,k&#x3D;l;
-    while(i&lt;&#x3D;mid &amp;&amp; j&lt;&#x3D;r) 
-    &#123;
-        if(a[i]&lt;&#x3D;a[j]) &#123;
-            temp[k]&#x3D;a[i];
-            k++,i++;
-        &#125;
-        else 
-        &#123;
-            temp[k]&#x3D;a[j];
-            k++,j++;
-        &#125;
-    &#125;
-    
-    while(i&lt;&#x3D;mid)
-    &#123;
-        temp[k]&#x3D;a[i];
-        k++,i++;
-    &#125;
-    while(j&lt;&#x3D;r)
-    &#123;
-        temp[k]&#x3D;a[j];
-        k++,j++;
-    &#125;
-    for(int i&#x3D;l;i&lt;&#x3D;r;++i)&#123;
-        a[i]&#x3D;temp[i];
-    &#125;
-&#125;
-
-int main()
-&#123;
-    int n;
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i&#x3D;1;i&lt;&#x3D;n;++i)&#123;
-        scanf(&quot;%d&quot;,&amp;a[i]);
-    &#125;
-    bin(1,n);
-    for(int i&#x3D;1;i&lt;&#x3D;n;++i)&#123;
-        printf(&quot;%d &quot;,a[i]);
-    &#125;
-    return 0;
-&#125;
-&#x2F;&#x2F;原文地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qseer&#x2F;p&#x2F;9419949.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;time.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;stdio.h&gt;
-using namespace std;
-#define range 10000
-void CountingSort(int a[],int b[],int len)
-&#123;
-	int cnt&#x3D;0;
-	for(int i&#x3D;0;i&lt;len;i++)
-	&#123;
-		b[a[i]]++;
-	&#125;
-	for(int i&#x3D;0;i&lt;len;i++)
-	while(b[i]!&#x3D;0)
-	&#123;
-		a[cnt++]&#x3D;i;
-		b[i]--;
-	&#125;
-&#125;
- 
-int main()
-&#123;
-	clock_t start,end;
-	start&#x3D;clock();
-	freopen(&quot;out_arr.txt&quot;,&quot;r&quot;,stdin);
-	freopen(&quot;out_计数排序.txt&quot;,&quot;w&quot;,stdout);
-	int a[range],b[range]&#x3D;&#123;0&#125;;
-	for(int i&#x3D;0;i&lt;range;i++)
-	&#123;
-		scanf(&quot;%d&quot;,&amp;a[i]);
-	&#125;
-	CountingSort(a,b,range);
-	for(int i&#x3D;0;i&lt;range;i++)
-	&#123;
-		printf(&quot;%5d &quot;,a[i]);
-		if((i+1)%50&#x3D;&#x3D;0)
-		printf(&quot;\n&quot;);
-	&#125;
-	end&#x3D;clock();
-	printf(&quot;计数排序耗时：%dms\n&quot;,(float)(end-start)*1000.0&#x2F;CLOCKS_PER_SEC);
-	
-	
-	
-	
-	return 0;
-
-————————————————
-版权声明：本文为CSDN博主「生于忧患，死于安乐2017」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_41325698&#x2F;article&#x2F;details&#x2F;88095563<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-  </div>
-  <div>
-  
-  </div>
-</article>
-<div class="nav">
-  
-  <div class="nav-item-prev">
-    <a href="/2020/01/14/高精度/" class="nav-link">
-      <i class="iconfont icon-left nav-prev-icon"></i>
-      <div>
-        <div class="nav-label">上一篇</div>
-        
-        <div class="nav-title">高精度 </div>
-        
-      </div>
-    </a>
-  </div>
-  
-  
-  <div class="nav-item-next">
-    <a href="/2020/01/09/木块问题/" class="nav-link">
-      <div>
-        <div class="nav-label">下一篇</div>
-        
-        <div class="nav-title">木块问题 </div>
-        
-      </div>
-      <i class="iconfont icon-right nav-next-icon"></i>
-    </a>
-  </div>
-  
-</div>
-
-<div class="card card-content comment-card" style="margin-top: 16px;">
-  <div class="comment-card-title">评论</div>
-  
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'czSTkrmwUne3NVdL70qjeDJ1-gzGzoHsz',
-        appKey: 'BhgYrtjqzDLf7UjEYHmnAX5Q',
-        placeholder: '留下足迹吖',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'false',
-        highlight: true,
-        recordIP: false,
-        
-        
-        
-        enableQQ: 'false',
-        requiredFields: [],
-      });
-    };
-  </script>
-
-</div>
-
-<div class="card card-content toc-card" id="mobiletoc">
-  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gnomesort-Naive-Improved"><span class="toc-text">Gnomesort: Naive + Improved</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-Basic"><span class="toc-text">Bubblesort: Basic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2"><span class="toc-text">Bubblesort: 提前终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E8%B7%B3%E8%BF%87%E6%97%A0%E6%95%88%E8%B5%B7%E6%B3%A1"><span class="toc-text">Bubblesort: 跳过无效起泡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selection-Sort"><span class="toc-text">Selection Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSelect"><span class="toc-text">QuickSelect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">计数排序</span></a></li></ol>
-</div></main>
-          <aside class="left-column">
-            
-            <div class="card card-author">
-              
-<img src="/img/avater.jpg" class="author-img">
-
-<p class="author-name">Pollar</p>
-<p class="author-description">While there is life there is hope.</p>
-<div class="author-message">
-  <a class="author-posts-count" href="/archives">
-    <span>20</span>
-    <span>文章</span>
-  </a>
-  <a class="author-categories-count" href="/categories">
-    <span>2</span>
-    <span>分类</span>
-  </a>
-  <a class="author-tags-count" href="/tags">
-    <span>2</span>
-    <span>标签</span>
-  </a>
-</div>
-
-            </div>
-            
-            <div class="sticky-tablet">
-  
-  
-  <article class="display-when-two-columns spacer">
-    <div class="card card-content toc-card">
-      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gnomesort-Naive-Improved"><span class="toc-text">Gnomesort: Naive + Improved</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-Basic"><span class="toc-text">Bubblesort: Basic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2"><span class="toc-text">Bubblesort: 提前终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E8%B7%B3%E8%BF%87%E6%97%A0%E6%95%88%E8%B5%B7%E6%B3%A1"><span class="toc-text">Bubblesort: 跳过无效起泡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selection-Sort"><span class="toc-text">Selection Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSelect"><span class="toc-text">QuickSelect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">计数排序</span></a></li></ol>
-    </div>
-  </article>
-  
-  
-  <article class="card card-content categories-widget">
-    <div class="categories-card">
-  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>分类</div>
-  <div class="categories-list">
-    
-      <a href="/categories/学习笔记">
-        <div class="categories-list-item">
-          学习笔记
-          <span class="categories-list-item-badge">2</span>
-        </div>
-      </a>
-    
-      <a href="/categories/基本数据结构">
-        <div class="categories-list-item">
-          基本数据结构
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  <article class="card card-content tags-widget">
-    <div class="tags-card">
-  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>热门标签</div>
-  <div class="tags-list">
-    
-    <a href="\tags\STL" title="STL"><div class="tags-list-item">STL</div></a>
-    
-    <a href="\tags\二分" title="二分"><div class="tags-list-item">二分</div></a>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
-          <aside class="right-column">
-            <div class="sticky-widescreen">
-  
-  
-  <article class="card card-content toc-card">
-    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gnomesort-Naive-Improved"><span class="toc-text">Gnomesort: Naive + Improved</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-Basic"><span class="toc-text">Bubblesort: Basic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2"><span class="toc-text">Bubblesort: 提前终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubblesort-%E8%B7%B3%E8%BF%87%E6%97%A0%E6%95%88%E8%B5%B7%E6%B3%A1"><span class="toc-text">Bubblesort: 跳过无效起泡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selection-Sort"><span class="toc-text">Selection Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSelect"><span class="toc-text">QuickSelect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">计数排序</span></a></li></ol>
-  </article>
-  
-  
-  <article class="card card-content">
-    <div class="recent-posts-card">
-  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>最近文章</div>
-  <div class="recent-posts-list">
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-11-07</div>
-        <a href="/2020/11/07/搜索集合-1/"><div class="recent-posts-item-content">搜索集合</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-11-07</div>
-        <a href="/2020/11/07/搜索集合/"><div class="recent-posts-item-content"></div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-09-20</div>
-        <a href="/2020/09/20/MST/"><div class="recent-posts-item-content">MST</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-09-20</div>
-        <a href="/2020/09/20/unionfind/"><div class="recent-posts-item-content">unionfind</div></a>
-      </div>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <div class="footer-dsc">
-        <span>Copyright ©
-          
-          2020 -
-          
-          2020
-        </span>
-        &nbsp;
-        <a href="/" class="footer-link">Pollar's Blog </a>
-      </div>
-    </div>
-
-    
-    <div class="footer-dsc">
-      
-      Powered by
-      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
-      
-      
-      <span>&nbsp;|&nbsp;</span>
-      
-      
-      Theme -
-      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
-        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
-      
-    </div>
-    
-    
-    
-    
-</footer>
-  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
-  <i class="iconfont icon-arrowleft button-icon"></i>
-</a>
-<a role="button" id="menubutton" class="basebutton">
-  <i class="iconfont icon-menu button-icon"></i>
-</a>
-<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
-  <i class="iconfont icon-expand button-icon"></i>
-</a>
-<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
-  <i class="iconfont icon-weather button-icon"></i>
-</a>
-<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
-  <i class="iconfont icon-search button-icon"></i>
-</a>
-
-  
-  
-  
-  <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img');
-    var i;
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a');
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
-      wrapper.setAttribute('aria-label', 'illustration');
-      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
-      wrapper.dataset.nolink = true;
-      img[i].before(wrapper);
-      wrapper.append(img[i]);
-      var divWrap = document.createElement('div');
-      divWrap.classList.add('gallery');
-      wrapper.before(divWrap);
-      divWrap.append(wrapper);
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
     }
-    baguetteBox.run('.gallery');
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
   }
-</script>
-<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
-  
-  
-  
-<script src="/js/main.js"></script>
+  .person:hover {
+    border-color: #f1f1f1;
+  }
 
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row" >
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>排序 Sorting</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Poller on
+                            2020-01-10
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
   
-  
-  <script>
-    var addLazyload = function () {
-      var observer = lozad('.lozad', {
-        load: function (el) {
-          el.srcset = el.getAttribute('data-src');
-        },
-        loaded: function (el) {
-          el.classList.add('loaded');
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pollar&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a  href="/">主页</a>
+                    </li>
+		    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
         }
-      });
-      observer.observe();
     }
-  </script>
-  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
-  
-  
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Gnomesort-Naive-Improved">Gnomesort: Naive + Improved</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">naiveGnomesort(s[], n) <span class="comment">//single loop but O(n^2)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; )&#123;</span><br><span class="line">      <span class="keyword">if</span>(i &lt; <span class="number">1</span> || s[i<span class="number">-1</span>] &lt;= s[i]) <span class="comment">//GREEDY</span></span><br><span class="line">      i++;<span class="comment">//inefficient backtracking</span></span><br><span class="line">      <span class="keyword">else</span> </span><br><span class="line">        &#123;  </span><br><span class="line">            swap ( s[ i<span class="number">-1</span>], s[i]);</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">improveGnomesort(s[], n)<span class="comment">//nested loops and still o(n^2) </span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; n ; k++) <span class="comment">//Since s[0,k) is always sorted, we can</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = k; <span class="number">0</span> &lt; i &amp;&amp; s[i<span class="number">-1</span>] &gt; s[i]; i-- ) <span class="comment">//backtrack to k and rescan</span></span><br><span class="line">    swap( s[i<span class="number">-1</span>], s[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Bubblesort-Basic">Bubblesort: Basic</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>( lo &lt; hi)</span><br><span class="line">  bubble( lo, hi--);<span class="comment">//逐趟做扫描交换</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>(++lo &lt; hi)&#123;<span class="comment">//从左向右，逐一检查各对相邻元素</span></span><br><span class="line">    <span class="keyword">if</span>( _elem[lo<span class="number">-1</span>] &gt; _elem[lo] )<span class="comment">//若逆序</span></span><br><span class="line">      swap( _elem[lo<span class="number">-1</span>], _elem[lo]);<span class="comment">//交换</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h2 id="Bubblesort-提前终止">Bubblesort: 提前终止</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>( ! bubble( lo, hi--))<span class="comment">//逐趟做扫描交换</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">bool</span> Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">bool</span> sorted = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">while</span>(++lo &lt; hi)&#123;<span class="comment">//从左向右，逐一检查各对相邻元素</span></span><br><span class="line">    <span class="keyword">if</span>( _elem[lo<span class="number">-1</span>] &gt; _elem[lo] )&#123;<span class="comment">//若逆序</span></span><br><span class="line">      sorted = <span class="literal">false</span>;</span><br><span class="line">      swap( _elem[lo<span class="number">-1</span>], _elem[lo]);<span class="comment">//交换</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sorted;<span class="comment">//整体有序</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h2 id="Bubblesort-跳过无效起泡">Bubblesort: 跳过无效起泡</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">void</span> Vector&lt;T&gt;:: bubbleSort ( Rank lo, Rank hi)&#123;</span><br><span class="line">  <span class="keyword">while</span>( lo &lt; ( hin = bubble( lo, hi)))<span class="comment">//逐趟做扫描交换,直至全序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">bool</span> Vector&lt;T&gt;:: bubble( Rank lo, Rank hi)&#123;</span><br><span class="line">  Rank last = lo;</span><br><span class="line">  <span class="keyword">while</span>(++lo &lt; hi)&#123;<span class="comment">//从左向右，逐一检查各对相邻元素</span></span><br><span class="line">    <span class="keyword">if</span>( _elem[lo<span class="number">-1</span>] &gt; _elem[lo] )&#123;<span class="comment">//若逆序</span></span><br><span class="line">      last = lo;<span class="comment">//更新最右侧逆序对位置记录，并</span></span><br><span class="line">      swap( _elem[lo<span class="number">-1</span>], _elem[lo]);<span class="comment">//交换</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> last;<span class="comment">//逆序对均在last以左</span></span><br></pre></td></tr></table></figure>
+<h2 id="Selection-Sort">Selection Sort</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T,<span class="keyword">int</span> size&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T(&amp;<span class="built_in">array</span>)[size])</span><span class="comment">//数组排序模版</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)<span class="comment">//从第一个开始遍历数组size次，默认将第一个视为最小元素；</span></span><br><span class="line">    &#123;</span><br><span class="line">        T min=<span class="built_in">array</span>[i];<span class="comment">//暂时将当前元素当作最小值</span></span><br><span class="line">        <span class="keyword">int</span> k=i;<span class="comment">//记录当前地址</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;size;j++)<span class="comment">//遍历未排序元素</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[j]&lt;min)<span class="comment">//如果未排序元素中有比当前值还小的</span></span><br><span class="line">            &#123;</span><br><span class="line">                min=<span class="built_in">array</span>[j];<span class="comment">//更新最小值</span></span><br><span class="line">                k=j;<span class="comment">//更新最小值地址</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k!=i)<span class="comment">//当一遍循环结束后如果最小元素不是当前值，将最小元素与当前值进行交换</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">array</span>[k]=<span class="built_in">array</span>[i];</span><br><span class="line">            <span class="built_in">array</span>[i]=min;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「liqiluan」的原创文章，遵循 CC <span class="number">4.0</span> BY-SA 版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/qq_39352109/article/details/88378108</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="QuickSelect">QuickSelect</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">quickSelect</span><span class="params">( Vector&lt;T&gt; &amp; A, Rank k)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(Rank lo = <span class="number">0</span>, hi = A.size() -  <span class="number">1</span>; lo &lt; hi; )&#123;</span><br><span class="line">    Rank i = lo, j = hi; T pivot = A[lo];</span><br><span class="line">    <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">      <span class="keyword">while</span>( pivot &lt;= A[j] )&#123; j--; A[i] = A[j];&#125;</span><br><span class="line">      <span class="keyword">while</span>( A[i] &lt;= pivot ) &#123; i++; A[j] = A[i];&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    A[i] = pivot;</span><br><span class="line">    <span class="keyword">if</span>( k &lt;= i ) hi = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>( i &lt;= k ) lo = i + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="归并排序">归并排序</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100001</span>],temp[<span class="number">100001</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bin</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    bin(l,mid);</span><br><span class="line">    bin(mid+<span class="number">1</span>,r);</span><br><span class="line">    <span class="keyword">int</span> i=l,j=mid+<span class="number">1</span>,k=l;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid &amp;&amp; j&lt;=r) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;=a[j]) &#123;</span><br><span class="line">            temp[k]=a[i];</span><br><span class="line">            k++,i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            temp[k]=a[j];</span><br><span class="line">            k++,j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid)</span><br><span class="line">    &#123;</span><br><span class="line">        temp[k]=a[i];</span><br><span class="line">        k++,i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r)</span><br><span class="line">    &#123;</span><br><span class="line">        temp[k]=a[j];</span><br><span class="line">        k++,j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;=r;++i)&#123;</span><br><span class="line">        a[i]=temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    bin(<span class="number">1</span>,n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//原文地址：https://www.cnblogs.com/qseer/p/9419949.html</span></span><br></pre></td></tr></table></figure>
+<h2 id="计数排序">计数排序</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> range 10000</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> b[],<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		b[a[i]]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	<span class="keyword">while</span>(b[i]!=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		a[cnt++]=i;</span><br><span class="line">		b[i]--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">clock_t</span> start,end;</span><br><span class="line">	start=clock();</span><br><span class="line">	freopen(<span class="string">&quot;out_arr.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">&quot;out_计数排序.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,<span class="built_in">stdout</span>);</span><br><span class="line">	<span class="keyword">int</span> a[range],b[range]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;range;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	CountingSort(a,b,range);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;range;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%5d &quot;</span>,a[i]);</span><br><span class="line">		<span class="keyword">if</span>((i+<span class="number">1</span>)%<span class="number">50</span>==<span class="number">0</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	end=clock();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;计数排序耗时：%dms\n&quot;</span>,(<span class="keyword">float</span>)(end-start)*<span class="number">1000.0</span>/CLOCKS_PER_SEC);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「生于忧患，死于安乐<span class="number">2017</span>」的原创文章，遵循 CC <span class="number">4.0</span> BY-SA 版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/qq_41325698/article/details/88095563</span></span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/01/14/高精度/" data-toggle="tooltip" data-placement="top" title="高精度">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/01/09/木块问题/" data-toggle="tooltip" data-placement="top" title="木块问题">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">标签云</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://zzlblog.ga" target="_blank">zzl&#39;sBlog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Poller 2020 
+                    <br>
+                    Powered by <a target="_blank" rel="noopener" href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a target="_blank" rel="noopener" href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+	
+<script src="/js/particles.js"></script>
+
+	
+<script src="/js/particles_config.js"></script>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zzhy0616.github.io/2020/01/10/%E6%8E%92%E5%BA%8F%20Sorting/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zzhy0616.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
 </body>
 
 </html>

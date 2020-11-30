@@ -1,593 +1,501 @@
 <!DOCTYPE html>
-<html  lang="zh-CN" >
+<html lang="en">
+
+<!-- Head tag -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#fff" id="theme-color">
-  <meta name="description" content="Pollar&#39;s Blog">
-  <link rel="icon" href="/img/logo.png">
-  <title>二叉树</title>
-  
-  
-  <meta property="og:title" content="二叉树">
-  
-  
-  <meta property="og:url" content="https://zzhy0616.github.io/2020/09/20/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
-  
-  
-  <meta property="og:img" content="/img/avater.jpg">
-  
-  
-  
-  <meta property="og:type" content="article">
-  <meta property="og:article:published_time" content="2020-09-20">
-  <meta property="og:article:modified_time" content="2020-09-21">
-  <meta property="og:article:author" content="Pollar">
-  
-  
-  
-  
-  
-  <script>
-    // control reverse button
-    var reverseDarkList = {
-      dark: 'light',
-      light: 'dark'
-    };
-    var themeColor = {
-      dark: '#1c1c1e',
-      light: '#fff'
-    }
-    // get the data of css prefers-color-scheme
-    var getCssMediaQuery = function() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    // reverse current darkmode setting function
-    var reverseDarkModeSetting = function() {
-      var setting = localStorage.getItem('user-color-scheme');
-      if(reverseDarkList[setting]) {
-        setting = reverseDarkList[setting];
-      } else if(setting === null) {
-        setting = reverseDarkList[getCssMediaQuery()];
-      } else {
-        return;
-      }
-      localStorage.setItem('user-color-scheme', setting);
-      return setting;
-    };
-    // apply current darkmode setting
-    var setDarkmode = function(mode) {
-      var setting = mode || localStorage.getItem('user-color-scheme');
-      if(setting === getCssMediaQuery()) {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else if(reverseDarkList[setting]) {
-        document.documentElement.setAttribute('data-user-color-scheme', setting);
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
-      }
-    };
-    setDarkmode();
-  </script>
-  <script>
-    function loadScript(url, cb) {
-      var script = document.createElement('script');
-      script.src = url;
-      if (cb) script.onload = cb;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  </script>
-  
-  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
-  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
-  
-  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
-  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
-  
-  
-  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
-  
-  
-  
-  
-  
-  
-  <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
-  
-  
-  
-  
-<link rel="stylesheet" href="/css/main.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          二叉树 - null
+        
+    </title>
 
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+    <link rel="canonical" href="https://zzhy0616.github.io/2020/09/20/二叉树/">
 
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+    <!-- Bootstrap Core CSS -->
 
-  
-  
-<link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+   
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 
-  
-  
-  
-  
-  
-  
-  <link href="/js/lib/prism/prism-coy.min.css" rel="stylesheet" data-prism="prism-coy">
-  
-  
-  
-<link rel="stylesheet" href="/js/lib/prism/prism-line-numbers.min.css">
 
-  
-  
-  
+    
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+
+    
+<link rel="stylesheet" href="/css/donate.css">
+
+	
+<link rel="stylesheet" href="/css/w3.css">
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 <meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Pollar's Blog" type="application/atom+xml">
 </head>
 
 
-<body>
-  <div class="wrapper">
-    
-    <nav class="navbar">
-  <div class="navbar-logo">
-    <span class="navbar-logo-main">
-      
-      <img class="navbar-logo-img" src="/img/logo.png" alt="logo">
-      
-      <span class="navbar-logo-dsc">Pollar's Blog</span>
-    </span>
-  </div>
-  <div class="navbar-menu">
-    
-    <a href="/" class="navbar-menu-item">
-    
-    首页
-    
-    </a>
-    
-    <a href="/archives" class="navbar-menu-item">
-    
-    归档
-    
-    </a>
-    
-    <a href="/tags" class="navbar-menu-item">
-    
-    标签
-    
-    </a>
-    
-    <a href="/categories" class="navbar-menu-item">
-    
-    分类
-    
-    </a>
-    
-    <a href="/about" class="navbar-menu-item">
-    
-    关于
-    
-    </a>
-    
-    <a href="/links" class="navbar-menu-item">
-    
-    友链
-    
-    </a>
-    
-    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
-    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
-  </div>
-</nav>
-    
-    <div id="local-search" style="display: none;">
-      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
-      <div id="search-content"></div>
-    </div>
-    
-    <div class="section-wrap">
-      <div class="container">
-        <div class="columns">
-          <main class="main-column">
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      二叉树
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2020-09-20T09:24:43.000Z">
-      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
-      <span>2020-09-20</span>
-    </time>
-    
-    
-    <span class="dot"></span>
-    <span>321 字</span>
-    
-  </div>
-  
-  </header>
-  <div id="section" class="post-content">
-    <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits&#x2F;stdc++.h&gt;
-using namespace std;
-const int N &#x3D; 100005;
-
-struct node &#123;
-	int val, l, r;
-&#125; t[N];
-
-int root, cnt;
-&#x2F;&#x2F;ÔÚÒÔxÎª¸ùµÄÊ÷ÖÐ²åÈëÒ»¸öÊý×Öv
-&#x2F;&#x2F;v:Òª²åÈëµÄÊý×Ö
-&#x2F;&#x2F;x£ºµ±Ç°½Úµã
-&#x2F;&#x2F;·µ»ØÖµ£ºx 
-int insert(int v, int x)&#123;
-	if(x &#x3D;&#x3D; 0)&#123;
-		x &#x3D; ++cnt;
-		t[x].val &#x3D; v;
-		t[x].r &#x3D; 0;
-		t[x].l &#x3D; 0;
-		return x;
-	&#125;
-	if(t[x].val &gt; v)
-	t[x].l &#x3D; insert(v, t[x].l);
-	else 
-	t[x].r            veturn x;
-&#125;
-
-void dlr(int x, vector&lt;int&gt; &amp;ans)&#123;
-	if(x)&#123;
-		ans.push_back(t[x].val);
-		dlr(t[x].l,ans);
-		dlr(t[x].r,ans);
-	&#125;
-&#125;
-
-int lrd(int x, vector&lt;int&gt; &amp;ans)&#123;
-	if(x)&#123;
-		lrd(t[x].l,ans);
-		lrd(t[x].r,ans);
-		ans.push_back(t[x].val);
-	&#125;
-&#125;
-
-&#x2F;&#x2F;¿É¼Ç×ö¸ù×óÓÒ¡£Ç°Ðò±éÀúÊ×ÏÈ·ÃÎÊ¸ù½áµãÈ»ºó±éÀú×ó×ÓÊ÷£¬×îºó±éÀúÓÒ×ÓÊ÷¡£ 
-vector&lt;int&gt; getAnswer(int n, vector&lt;int&gt; sequence) &#123;
-	root &#x3D; cnt &#x3D; 0;
-	for(int i &#x3D; 0; i &lt; int(sequence.size()); ++i)&#123;
-		root &#x3D; insert(sequence[i], root);
-	&#125;
-	vector&lt;int&gt; ans;
-	dlr(root, ans);
-	lrd(root, ans);
-	
-	return ans;
-&#125;
-
-
-
-int main() &#123;
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    vector&lt;int&gt; sequence;
-    for (int i &#x3D; 0; i &lt; n; ++i) &#123;
-        int x;
-        scanf(&quot;%d&quot;, &amp;x);
-        sequence.push_back(x);
-    &#125;
-    vector&lt;int&gt; ans &#x3D; getAnswer(n, sequence);
-    for (int i &#x3D; 0; i &lt; n; ++i)
-        printf(&quot;%d%c&quot;, ans[i], &quot; \n&quot;[i &#x3D;&#x3D; n - 1]);
-    for (int i &#x3D; 0; i &lt; n; ++i)
-        printf(&quot;%d%c&quot;, ans[n + i], &quot; \n&quot;[i &#x3D;&#x3D; n - 1]);
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-  </div>
-  <div>
-  
-  </div>
-</article>
-<div class="nav">
-  
-  <div class="nav-item-prev">
-    <a href="/2020/09/20/Huffuman/" class="nav-link">
-      <i class="iconfont icon-left nav-prev-icon"></i>
-      <div>
-        <div class="nav-label">上一篇</div>
-        
-        <div class="nav-title">Huffuman </div>
-        
-      </div>
-    </a>
-  </div>
-  
-  
-  <div class="nav-item-next">
-    <a href="/2020/08/21/TO-DO-LIST/" class="nav-link">
-      <div>
-        <div class="nav-label">下一篇</div>
-        
-        <div class="nav-title">TO DO LIST </div>
-        
-      </div>
-      <i class="iconfont icon-right nav-next-icon"></i>
-    </a>
-  </div>
-  
-</div>
-
-<div class="card card-content comment-card" style="margin-top: 16px;">
-  <div class="comment-card-title">评论</div>
-  
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'czSTkrmwUne3NVdL70qjeDJ1-gzGzoHsz',
-        appKey: 'BhgYrtjqzDLf7UjEYHmnAX5Q',
-        placeholder: '留下足迹吖',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'false',
-        highlight: true,
-        recordIP: false,
-        
-        
-        
-        enableQQ: 'false',
-        requiredFields: [],
-      });
-    };
-  </script>
-
-</div>
-
-<div class="card card-content toc-card" id="mobiletoc">
-  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-
-</div></main>
-          <aside class="left-column">
-            
-            <div class="card card-author">
-              
-<img src="/img/avater.jpg" class="author-img">
-
-<p class="author-name">Pollar</p>
-<p class="author-description">While there is life there is hope.</p>
-<div class="author-message">
-  <a class="author-posts-count" href="/archives">
-    <span>20</span>
-    <span>文章</span>
-  </a>
-  <a class="author-categories-count" href="/categories">
-    <span>2</span>
-    <span>分类</span>
-  </a>
-  <a class="author-tags-count" href="/tags">
-    <span>2</span>
-    <span>标签</span>
-  </a>
-</div>
-
-            </div>
-            
-            <div class="sticky-tablet">
-  
-  
-  <article class="display-when-two-columns spacer">
-    <div class="card card-content toc-card">
-      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-
-    </div>
-  </article>
-  
-  
-  <article class="card card-content categories-widget">
-    <div class="categories-card">
-  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>分类</div>
-  <div class="categories-list">
-    
-      <a href="/categories/学习笔记">
-        <div class="categories-list-item">
-          学习笔记
-          <span class="categories-list-item-badge">2</span>
-        </div>
-      </a>
-    
-      <a href="/categories/基本数据结构">
-        <div class="categories-list-item">
-          基本数据结构
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  <article class="card card-content tags-widget">
-    <div class="tags-card">
-  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>热门标签</div>
-  <div class="tags-list">
-    
-    <a href="\tags\STL" title="STL"><div class="tags-list-item">STL</div></a>
-    
-    <a href="\tags\二分" title="二分"><div class="tags-list-item">二分</div></a>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
-          <aside class="right-column">
-            <div class="sticky-widescreen">
-  
-  
-  <article class="card card-content toc-card">
-    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
-
-  </article>
-  
-  
-  <article class="card card-content">
-    <div class="recent-posts-card">
-  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>最近文章</div>
-  <div class="recent-posts-list">
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-11-07</div>
-        <a href="/2020/11/07/搜索集合-1/"><div class="recent-posts-item-content">搜索集合</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-11-07</div>
-        <a href="/2020/11/07/搜索集合/"><div class="recent-posts-item-content"></div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-09-20</div>
-        <a href="/2020/09/20/MST/"><div class="recent-posts-item-content">MST</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2020-09-20</div>
-        <a href="/2020/09/20/unionfind/"><div class="recent-posts-item-content">unionfind</div></a>
-      </div>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <div class="footer-dsc">
-        <span>Copyright ©
-          
-          2020 -
-          
-          2020
-        </span>
-        &nbsp;
-        <a href="/" class="footer-link">Pollar's Blog </a>
-      </div>
-    </div>
-
-    
-    <div class="footer-dsc">
-      
-      Powered by
-      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
-      
-      
-      <span>&nbsp;|&nbsp;</span>
-      
-      
-      Theme -
-      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
-        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
-      
-    </div>
-    
-    
-    
-    
-</footer>
-  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
-  <i class="iconfont icon-arrowleft button-icon"></i>
-</a>
-<a role="button" id="menubutton" class="basebutton">
-  <i class="iconfont icon-menu button-icon"></i>
-</a>
-<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
-  <i class="iconfont icon-expand button-icon"></i>
-</a>
-<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
-  <i class="iconfont icon-weather button-icon"></i>
-</a>
-<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
-  <i class="iconfont icon-search button-icon"></i>
-</a>
-
-  
-  
-  
-  <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img');
-    var i;
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a');
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
-      wrapper.setAttribute('aria-label', 'illustration');
-      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
-      wrapper.dataset.nolink = true;
-      img[i].before(wrapper);
-      wrapper.append(img[i]);
-      var divWrap = document.createElement('div');
-      divWrap.classList.add('gallery');
-      wrapper.before(divWrap);
-      divWrap.append(wrapper);
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
     }
-    baguetteBox.run('.gallery');
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
   }
-</script>
-<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
-  
-  
-  
-<script src="/js/main.js"></script>
+  .person:hover {
+    border-color: #f1f1f1;
+  }
 
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row" >
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#二叉树" title="二叉树">二叉树</a>
+                            
+                        </div>
+                        <h1>二叉树</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Poller on
+                            2020-09-20
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
   
-  
-  <script>
-    var addLazyload = function () {
-      var observer = lozad('.lozad', {
-        load: function (el) {
-          el.srcset = el.getAttribute('data-src');
-        },
-        loaded: function (el) {
-          el.classList.add('loaded');
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pollar&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a  href="/">主页</a>
+                    </li>
+		    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
         }
-      });
-      observer.observe();
     }
-  </script>
-  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
-  
-  
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="二叉树的编号">二叉树的编号</h2>
+<h3 id="题目大意">题目大意</h3>
+<p><a target="_blank" rel="noopener" href="https://uva.onlinejudge.org/external/6/p679.pdf">https://uva.onlinejudge.org/external/6/p679.pdf</a></p>
+<h3 id="Code">Code</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 运算量较大的代码*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxd = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> s[<span class="number">1</span> &lt;&lt; maxd];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> D, I;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;D, &amp;I) == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(s ,<span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">        <span class="keyword">int</span> k, n = (<span class="number">1</span> &lt;&lt; D) - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; I; ++i)&#123;</span><br><span class="line">            k = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">                s[k] = !s[k];</span><br><span class="line">                k = s[k] ? k*<span class="number">2</span> : k*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(k &gt; n) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, k/<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//运算量较小的代码</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">每个小球都会落在根节点上，因此前两个小球必然是一个在左子树，一个在右子树，只需判断</span></span><br><span class="line"><span class="comment">小球编号的奇偶性就可以知道小球，落到根节点的左子树还是右子树。</span></span><br><span class="line"><span class="comment">以此类推只需知道该小球是第几个落在根的左右子树里，就可以知道其下一步往左走还是往右走</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;D, &amp;I) == <span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; D<span class="number">-1</span>; ++i)</span><br><span class="line">    <span class="keyword">if</span>(I%<span class="number">2</span>) &#123; k = k * <span class="number">2</span>; I = (I+<span class="number">1</span>)/<span class="number">2</span>; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        k = k*<span class="number">2</span> + <span class="number">1</span>; I /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, k);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的层次遍历">二叉树的层次遍历</h2>
+<p>原题链接<br>
+<a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVA-122">https://vjudge.net/problem/UVA-122</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1001000</span>;</span><br><span class="line"><span class="comment">//输入部分和主程序</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">bool</span> have_value;<span class="comment">//是否被赋值过</span></span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    Node *left, *right;</span><br><span class="line">    Node():have_value(<span class="literal">false</span>), left(<span class="literal">NULL</span>), right(<span class="literal">NULL</span>)&#123; &#125;<span class="comment">//构造函数</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">char</span> s[maxn];</span><br><span class="line"><span class="keyword">int</span> v; </span><br><span class="line"><span class="keyword">bool</span> failed;</span><br><span class="line">Node* root;</span><br><span class="line"><span class="function">Node* <span class="title">newnode</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> Node();&#125;;<span class="comment">//每次需要一个新的Node时需要申请内存</span></span><br><span class="line"><span class="comment">/* 可以用new 运算符申请空间并执行构造函数， 若返回值为NULL则空间不足申请失败*/</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">remove_tree</span><span class="params">(Node *u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(u == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">    remove_tree(u-&gt;left);</span><br><span class="line">    remove_tree(u-&gt;right);</span><br><span class="line">    <span class="keyword">delete</span> u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; ans)</span></span>&#123;</span><br><span class="line">    ans.clear();</span><br><span class="line">	<span class="built_in">queue</span>&lt;Node*&gt; q;</span><br><span class="line">    q.push(root); </span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        Node* u = q.front(); q.pop();</span><br><span class="line">        <span class="keyword">if</span>(!u -&gt; have_value) <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//有节点没有被赋值过，表明输入有误</span></span><br><span class="line">        ans.push_back(u-&gt;v);</span><br><span class="line">        <span class="keyword">if</span>(u-&gt;left != <span class="literal">NULL</span>) q.push(u-&gt;left);</span><br><span class="line">        <span class="keyword">if</span>(u-&gt;right != <span class="literal">NULL</span>) q.push(u -&gt; right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addnode</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="built_in">strlen</span>(s);</span><br><span class="line">    Node *u = root; <span class="comment">//从根节点往下走</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;L&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(u -&gt;left == <span class="literal">NULL</span>) u -&gt;left = newnode();</span><br><span class="line">            u = u -&gt; left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">             <span class="keyword">if</span>(u -&gt; right == <span class="literal">NULL</span>) u -&gt;right = newnode();</span><br><span class="line">            u = u -&gt; right;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;	 <span class="comment">//坑点不能忽略其他情况，如为）时</span></span><br><span class="line">    <span class="keyword">if</span>(u -&gt; have_value) failed = <span class="literal">true</span>; <span class="comment">//已经赋过值，表明输入有误</span></span><br><span class="line">    u -&gt; v = v;</span><br><span class="line">    u -&gt; have_value = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">read_input</span><span class="params">()</span></span>&#123;</span><br><span class="line">    failed = <span class="literal">false</span>;</span><br><span class="line">    remove_tree(root);</span><br><span class="line">    root = newnode();<span class="comment">//创建根节点</span></span><br><span class="line">    <span class="keyword">for</span>( ; ; )&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s) != <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//整个输入结束</span></span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s, <span class="string">&quot;()&quot;</span>)) <span class="keyword">break</span>; <span class="comment">//读到结束标志，退出循环</span></span><br><span class="line">        <span class="built_in">sscanf</span>(&amp;s[<span class="number">1</span>],<span class="string">&quot;%d&quot;</span>, &amp;v);<span class="comment">//读入节点值</span></span><br><span class="line">        addnode(v, <span class="built_in">strchr</span>(s, <span class="string">&#x27;,&#x27;</span>) + <span class="number">1</span>);<span class="comment">//查找逗号，然后插入节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">    <span class="keyword">while</span>(read_input())&#123;</span><br><span class="line">    <span class="keyword">if</span>(failed || !bfs(ans))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;not complete&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator t = ans.begin(); t!=ans.end(); t++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(t != ans.end()<span class="number">-1</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,*t);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*t);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的递归遍历">二叉树的递归遍历</h2>
+<p>题目大意<br>
+给出一颗二叉树的后序遍历与中序遍历，找出一个叶子使得它到根的路径上的权和最小<br>
+代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//因为各个节点的权值不同且都是正整数，直接用权值作为节点编号</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxv = <span class="number">10000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> in_order[maxv], post_order[maxv], lch[maxv], rch[maxv];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">read_list</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">buid</span><span class="params">(<span class="keyword">int</span> L1, <span class="keyword">int</span> R1, <span class="keyword">int</span> L2, <span class="keyword">int</span> R2)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> best, best_num;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(read_list(on_order)) &#123;</span><br><span class="line">        read_list(post_order);</span><br><span class="line">        build(<span class="number">0</span>, n<span class="number">-1</span>, <span class="number">0</span>, n<span class="number">-1</span>);</span><br><span class="line">        best_num = <span class="number">1000000000</span>;</span><br><span class="line">        dfs(post_order[n<span class="number">-1</span>], <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; best &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/20/unionfind/" data-toggle="tooltip" data-placement="top" title="unionfind">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/02/05/位运算/" data-toggle="tooltip" data-placement="top" title="位运算">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">标签云</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#二叉树" title="二叉树">二叉树</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://zzlblog.ga" target="_blank">zzl&#39;sBlog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Poller 2020 
+                    <br>
+                    Powered by <a target="_blank" rel="noopener" href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a target="_blank" rel="noopener" href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+	
+<script src="/js/particles.js"></script>
+
+	
+<script src="/js/particles_config.js"></script>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zzhy0616.github.io/2020/09/20/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zzhy0616.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
 </body>
 
 </html>
