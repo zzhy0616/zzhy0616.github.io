@@ -20,12 +20,12 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="pair 结构体 ▶ 可以将两种类型融合成一种类型 ▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair&lt;int, int&gt; range; range.first &#x3D; 1, range.second &#x3D; 3; ▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first &#x3D; 12, p.secon">
+    <meta name="description" content="pair 结构体▶ 可以将两种类型融合成一种类型▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair range; range.first &#x3D; 1, range.second &#x3D; 3;▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair p; p.first &#x3D; 12, p.second &#x3D; 99.2;▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL">
 <meta property="og:url" content="https://zzhy0616.github.io/2020/01/17/STL/index.html">
 <meta property="og:site_name" content="Pollar">
-<meta property="og:description" content="pair 结构体 ▶ 可以将两种类型融合成一种类型 ▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair&lt;int, int&gt; range; range.first &#x3D; 1, range.second &#x3D; 3; ▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first &#x3D; 12, p.secon">
+<meta property="og:description" content="pair 结构体▶ 可以将两种类型融合成一种类型▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair range; range.first &#x3D; 1, range.second &#x3D; 3;▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair p; p.first &#x3D; 12, p.second &#x3D; 99.2;▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-17T04:23:32.000Z">
 <meta property="article:modified_time" content="2020-11-30T10:24:08.670Z">
@@ -279,7 +279,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">547</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">512</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,48 +409,18 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <a id="more"></a>
-<h2 id="pair-结构体">pair 结构体</h2>
-<p>▶ 可以将两种类型融合成一种类型<br>
-▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair&lt;int, int&gt; range; range.first = 1, range.second = 3;<br>
-▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first = 12, p.second = 99.2;<br>
-▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，前一种类 型为 first，后一种为 second<br>
-▶ 可以用括号赋值，只能在定义的时用<br>
-pair&lt;int, char&gt; q(3, ‘a’); // 正确<br>
-q(4, ‘b’); // 错误，只能定义时用</p>
-<h3 id="make-pair函数">make_pair函数</h3>
-<p>可以将两个数融合成一个pair<br>
-pair&lt;int, int&gt; s = make_pair(2, 3);</p>
-<h3 id="比较">比较</h3>
-<p>先比较first 再比较second</p>
-<h2 id="sort函数">sort函数</h2>
-<p>▶ a[15] = {9, 2, 3, 1, 4, 3, 6, 5, 2, 10};<br>
-▶ 从小到大排序 sort(a, a + 10);<br>
-▶ 从大到小排序 sort(a, a + 10, greater<int>());<br>
-▶ 使用 greater 可能需要 #include <functional><br>
-▶ sort 函数前两个参数是地址，记为 l,r，排序的区间为 [l,r)<br>
-▶ 有 n 个区间 (l[i], r[i])，将这 n 个区间以左端点为第一关键 字，右端点按第二关键字从小到大排序<br>
-pair&lt;int, int&gt; range[enough]; for(int i = 1; i &lt;= n; ++i) range[i] = make_pair(l[i], r[i]); sort(range + 1, range + n + 1);<br>
-▶ 有 n 个区间 (l[i], r[i])，将这 n 个区间以左端点为第一关键 字，右端点按第二关键字且左端点递增，右端点递减排序<br>
-pair&lt;int, int&gt; range[enough]; for(int i = 1; i &lt;= n; ++i) range[i] = make_pair(l[i], -r[i]); sort(range + 1, range + n + 1);</p>
-<h2 id="unique-去重函数">unique 去重函数</h2>
-<p>先排序，然后把相邻的相同元素删掉<br>
-sort(a + 1, a + n + 1);<br>
-n = unique(a + 1, a + n + 1) - a - 1;</p>
-<h2 id="lower-bound-upper-bound-函数">lower_bound, upper_bound 函数</h2>
-<p>lower_bound(l, r, v) 可以得到在 [l,r) 内第一个大于等于 v 的 位置<br>
-upper_bound(l, r, v) 可以得到在 [l,r) 内第一个大于 v 的位置</p>
-<h2 id="priority-queue">priority_queue</h2>
-<p>priority_queue 可以快速的支持插入，查找最大值，删除最大值 的操作</p>
-<h3 id="定义一个-priority-queue">定义一个 priority_queue</h3>
-<p>priority_queue<int> que;</p>
-<h3 id="插入一个-x">插入一个 x</h3>
-<p>que.push(x);</p>
-<h3 id="查找最大值">查找最大值</h3>
-<p>maxvalue = que.top();</p>
-<h3 id="删除最大值">删除最大值</h3>
-<p>que.pop();</p>
-<h3 id="定义最小">定义最小</h3>
-<p>priority_queue&lt;int, vector<int>, greater<int> &gt; q</p>
+<h2 id="pair-结构体"><a href="#pair-结构体" class="headerlink" title="pair 结构体"></a>pair 结构体</h2><p>▶ 可以将两种类型融合成一种类型<br>▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair<int, int> range; range.first = 1, range.second = 3;<br>▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair<int, double> p; p.first = 12, p.second = 99.2;<br>▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，前一种类 型为 first，后一种为 second<br>▶ 可以用括号赋值，只能在定义的时用<br>pair<int, char> q(3, ‘a’); // 正确<br>q(4, ‘b’); // 错误，只能定义时用</p>
+<h3 id="make-pair函数"><a href="#make-pair函数" class="headerlink" title="make_pair函数"></a>make_pair函数</h3><p>可以将两个数融合成一个pair<br>pair<int, int> s = make_pair(2, 3); </p>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>先比较first 再比较second</p>
+<h2 id="sort函数"><a href="#sort函数" class="headerlink" title="sort函数"></a>sort函数</h2><p>▶ a[15] = {9, 2, 3, 1, 4, 3, 6, 5, 2, 10};<br>▶ 从小到大排序 sort(a, a + 10);<br>▶ 从大到小排序 sort(a, a + 10, greater<int>());<br>▶ 使用 greater 可能需要 #include <functional><br>▶ sort 函数前两个参数是地址，记为 l,r，排序的区间为 [l,r)<br>▶ 有 n 个区间 (l[i], r[i])，将这 n 个区间以左端点为第一关键 字，右端点按第二关键字从小到大排序<br>pair<int, int> range[enough]; for(int i = 1; i &lt;= n; ++i) range[i] = make_pair(l[i], r[i]); sort(range + 1, range + n + 1);<br>▶ 有 n 个区间 (l[i], r[i])，将这 n 个区间以左端点为第一关键 字，右端点按第二关键字且左端点递增，右端点递减排序<br>pair<int, int> range[enough]; for(int i = 1; i &lt;= n; ++i) range[i] = make_pair(l[i], -r[i]); sort(range + 1, range + n + 1);</p>
+<h2 id="unique-去重函数"><a href="#unique-去重函数" class="headerlink" title="unique 去重函数"></a>unique 去重函数</h2><p>先排序，然后把相邻的相同元素删掉<br>sort(a + 1, a + n + 1);<br>n = unique(a + 1, a + n + 1) - a - 1; </p>
+<h2 id="lower-bound-upper-bound-函数"><a href="#lower-bound-upper-bound-函数" class="headerlink" title="lower_bound, upper_bound 函数"></a>lower_bound, upper_bound 函数</h2><p>lower_bound(l, r, v) 可以得到在 [l,r) 内第一个大于等于 v 的 位置<br>upper_bound(l, r, v) 可以得到在 [l,r) 内第一个大于 v 的位置 </p>
+<h2 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h2><p>priority_queue 可以快速的支持插入，查找最大值，删除最大值 的操作</p>
+<h3 id="定义一个-priority-queue"><a href="#定义一个-priority-queue" class="headerlink" title="定义一个 priority_queue"></a>定义一个 priority_queue</h3><p>priority_queue<int> que; </p>
+<h3 id="插入一个-x"><a href="#插入一个-x" class="headerlink" title="插入一个 x"></a>插入一个 x</h3><p>que.push(x); </p>
+<h3 id="查找最大值"><a href="#查找最大值" class="headerlink" title="查找最大值"></a>查找最大值</h3><p>maxvalue = que.top();</p>
+<h3 id="删除最大值"><a href="#删除最大值" class="headerlink" title="删除最大值"></a>删除最大值</h3><p>que.pop();</p>
+<h3 id="定义最小"><a href="#定义最小" class="headerlink" title="定义最小"></a>定义最小</h3><p>priority_queue<int, vector<int>, greater<int> &gt; q </p>
 
     </article>
     <!-- license  -->
@@ -809,12 +779,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
         </li>
     
     

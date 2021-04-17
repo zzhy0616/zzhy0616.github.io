@@ -20,12 +20,12 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="BFS 对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式) 123456789101112131415161718192021222324252627282930313233343536373839404142const int INF &#x3D; 100000000;typedef pair&lt;int, int&gt; P;&#x2F;&#x2F;输入char maze[MAX_n][MAX">
+    <meta name="description" content="BFS对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式) 123456789101112131415161718192021222324252627282930313233343536373839404142const int INF &#x3D; 100000000;typedef pair&lt;int, int&gt; P;&#x2F;&#x2F;输入char maze[MAX_n][MAX_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记">
 <meta property="og:url" content="https://zzhy0616.github.io/2020/01/14/2020.8.15%20note/index.html">
 <meta property="og:site_name" content="Pollar">
-<meta property="og:description" content="BFS 对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式) 123456789101112131415161718192021222324252627282930313233343536373839404142const int INF &#x3D; 100000000;typedef pair&lt;int, int&gt; P;&#x2F;&#x2F;输入char maze[MAX_n][MAX">
+<meta property="og:description" content="BFS对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式) 123456789101112131415161718192021222324252627282930313233343536373839404142const int INF &#x3D; 100000000;typedef pair&lt;int, int&gt; P;&#x2F;&#x2F;输入char maze[MAX_n][MAX_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-14T12:39:00.000Z">
 <meta property="article:modified_time" content="2020-11-30T10:22:44.499Z">
@@ -409,8 +409,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <a id="more"></a>
-<h1>BFS</h1>
-<p>对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)</p>
+<h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><p>对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">100000000</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输入</span></span><br><span class="line"><span class="keyword">char</span> maze[MAX_n][MAX_n+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> N, M;</span><br><span class="line"><span class="keyword">int</span> sx, sy;</span><br><span class="line"><span class="keyword">int</span> gx, gy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;, dy [<span class="number">4</span>]= &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;P&gt; que;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; ++j) d[i][j] = INF;</span><br><span class="line">        <span class="comment">//将起点加入队列，并把这一地点的距离设置为0；</span></span><br><span class="line">    que.push(P(sx, sy));</span><br><span class="line">    d[sx][sy] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(que.size())&#123;</span><br><span class="line">        P p = que.front(); que.pop();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p.first == gx &amp;&amp; p.second == gy) <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">//四个方向的循环</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> nx = p.first + dx[i], ny = p. second + dy[i];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="number">0</span> &lt;= nx &amp;&amp; nx &lt; N &amp;&amp; <span class="number">0</span> &lt;= ny &amp;&amp; ny &lt;= M &amp;&amp; maze[nx][ny] != <span class="string">&#x27;#&#x27;</span> &amp;&amp; d[nx][ny] == INF)&#123;</span><br><span class="line">                que.push(P(nx, ny));</span><br><span class="line">                d[nx][ny] = d[p.first][p.second] + <span class="number">1</span>;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d[gx][gy];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = bfs();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, res);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
@@ -420,16 +419,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/01/14/Binary/" title= "Binary">
-                    <div class="nextTitle">Binary</div>
+                <a href= "/2020/01/14/2020.8.14%20note/" title= "学习笔记">
+                    <div class="nextTitle">学习笔记</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/01/14/2020.8.14%20note/" title= "学习笔记">
-                    <div class="prevTitle">学习笔记</div>
+                <a href= "/2020/01/14/%E9%98%9F%E5%88%97/" title= "队列">
+                    <div class="prevTitle">队列</div>
                 </a>
             
         </li>
@@ -541,7 +540,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">BFS</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BFS"><span class="toc-number">1.</span> <span class="toc-text">BFS</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -769,12 +768,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
         </li>
     
     

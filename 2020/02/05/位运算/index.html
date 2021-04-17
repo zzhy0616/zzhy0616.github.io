@@ -20,12 +20,12 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="符号 描述 运算规则     &amp; 与 两个位都为1时，结果才为1   | 或 两个位都为0时，结果才为0   ^ 异或 两个位相同为0，相异为1   ~ 非 0变1，1变0   &lt;&lt; 左移 各二进位全部左移若干位，高位丢弃，低位补0   &gt;&gt; 右移 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的">
+    <meta name="description" content="符号 描述 运算规则     &amp; 与 两个位都为1时，结果才为1   \  或 两个位都为0时，结果才为0   ^ 异或 两个位相同为0，相异为1   ~ 非 0变1，1变0   &lt;&lt; 左移 各二进位全部左移若干位，高位丢弃，低位补0   &gt;&gt; 右移 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），">
 <meta property="og:type" content="article">
 <meta property="og:title" content="位运算">
 <meta property="og:url" content="https://zzhy0616.github.io/2020/02/05/%E4%BD%8D%E8%BF%90%E7%AE%97/index.html">
 <meta property="og:site_name" content="Pollar">
-<meta property="og:description" content="符号 描述 运算规则     &amp; 与 两个位都为1时，结果才为1   | 或 两个位都为0时，结果才为0   ^ 异或 两个位相同为0，相异为1   ~ 非 0变1，1变0   &lt;&lt; 左移 各二进位全部左移若干位，高位丢弃，低位补0   &gt;&gt; 右移 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的">
+<meta property="og:description" content="符号 描述 运算规则     &amp; 与 两个位都为1时，结果才为1   \  或 两个位都为0时，结果才为0   ^ 异或 两个位相同为0，相异为1   ~ 非 0变1，1变0   &lt;&lt; 左移 各二进位全部左移若干位，高位丢弃，低位补0   &gt;&gt; 右移 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-05T12:47:34.000Z">
 <meta property="article:modified_time" content="2021-04-14T10:18:26.647Z">
@@ -279,7 +279,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">234</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">232</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,6 +409,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <a id="more"></a>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -424,7 +425,8 @@ height:50vh;
 <td>两个位都为1时，结果才为1</td>
 </tr>
 <tr>
-<td>|</td>
+<td>\</td>
+<td></td>
 <td>或</td>
 <td>两个位都为0时，结果才为0</td>
 </tr>
@@ -450,18 +452,11 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h1>&amp;</h1>
-<h2 id="清零">清零</h2>
-<p>如果想将一个单元清零，与一个各位都为零的数值</p>
-<h2 id="取一个数的指定位">取一个数的指定位</h2>
-<p>如取100001000的低四位，需要与Y（低四位都是1其余位为0）</p>
-<h1>|</h1>
-<p>对一个数据的某些位设置为1<br>
-X = 1000001000 ，设置X低四位全为1，Y （低四位为1，其余位为0）<br>
-X | Y</p>
-<h1>^</h1>
-<h2 id="使一个数的最低为为0">使一个数的最低为为0</h2>
-<p>a ^ ~1</p>
+</div>
+<h1 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h1><h2 id="清零"><a href="#清零" class="headerlink" title="清零"></a>清零</h2><p>如果想将一个单元清零，与一个各位都为零的数值</p>
+<h2 id="取一个数的指定位"><a href="#取一个数的指定位" class="headerlink" title="取一个数的指定位"></a>取一个数的指定位</h2><p>如取100001000的低四位，需要与Y（低四位都是1其余位为0）</p>
+<h1 id=""><a href="#" class="headerlink" title="|"></a>|</h1><p>对一个数据的某些位设置为1<br>X = 1000001000 ，设置X低四位全为1，Y （低四位为1，其余位为0）<br>X | Y</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h1><h2 id="使一个数的最低为为0"><a href="#使一个数的最低为为0" class="headerlink" title="使一个数的最低为为0"></a>使一个数的最低为为0</h2><p>a ^ ~1</p>
 
     </article>
     <!-- license  -->
@@ -592,7 +587,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">&amp;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%9B%B6"><span class="toc-number">1.1.</span> <span class="toc-text">清零</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E4%B8%80%E4%B8%AA%E6%95%B0%E7%9A%84%E6%8C%87%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.2.</span> <span class="toc-text">取一个数的指定位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">|</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">^</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E4%B8%80%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E4%BD%8E%E4%B8%BA%E4%B8%BA0"><span class="toc-number">3.1.</span> <span class="toc-text">使一个数的最低为为0</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#amp"><span class="toc-number">1.</span> <span class="toc-text">&amp;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%9B%B6"><span class="toc-number">1.1.</span> <span class="toc-text">清零</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E4%B8%80%E4%B8%AA%E6%95%B0%E7%9A%84%E6%8C%87%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.2.</span> <span class="toc-text">取一个数的指定位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">|</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-number">3.</span> <span class="toc-text">^</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E4%B8%80%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E4%BD%8E%E4%B8%BA%E4%B8%BA0"><span class="toc-number">3.1.</span> <span class="toc-text">使一个数的最低为为0</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -820,12 +815,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.14%20note/" >学习笔记</a>
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href= "/2020/01/14/2020.8.15%20note/" >学习笔记</a>
         </li>
     
     
