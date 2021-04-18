@@ -20,12 +20,12 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 — n-1的位置。现对这些木块进行操作，操作分为四种。 1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上； 2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面； 3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体">
+    <meta name="description" content="输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。 1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上； 2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面； 3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体">
 <meta property="og:type" content="article">
 <meta property="og:title" content="木块问题">
 <meta property="og:url" content="https://zzhy0616.github.io/2020/01/09/%E6%9C%A8%E5%9D%97%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Pollar">
-<meta property="og:description" content="输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 — n-1的位置。现对这些木块进行操作，操作分为四种。 1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上； 2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面； 3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体">
+<meta property="og:description" content="输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。 1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上； 2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面； 3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-09T06:35:15.000Z">
 <meta property="article:modified_time" content="2020-11-30T10:22:44.499Z">
@@ -286,7 +286,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">569</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">584</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,14 +416,34 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <a id="more"></a>
-<p>输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 — n-1的位置。现对这些木块进行操作，操作分为四种。</p>
+<p>输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。</p>
 <p>1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；</p>
 <p>2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；</p>
 <p>3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；</p>
 <p>4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。</p>
 <p>当输入quit时，结束操作并输出0~n-1的位置上的木块情况</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>10<br>move 9 onto 1<br>move 8 over 1<br>move 7 over 1<br>move 6 over 1<br>pile 8 over 6<br>pile 8 over 5<br>move 2 over 1<br>move 4 over 9<br>quit</p>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><p>0: 0<br>1: 1 9 2 4<br>2:<br>3: 3<br>4:<br>5: 5 8 7 6<br>6:<br>7:<br>8:<br>9:</p>
+<h2 id="Sample-Input">Sample Input</h2>
+<p>10<br>
+move 9 onto 1<br>
+move 8 over 1<br>
+move 7 over 1<br>
+move 6 over 1<br>
+pile 8 over 6<br>
+pile 8 over 5<br>
+move 2 over 1<br>
+move 4 over 9<br>
+quit</p>
+<h2 id="Sample-Output">Sample Output</h2>
+<p>0: 0<br>
+1: 1 9 2 4<br>
+2:<br>
+3: 3<br>
+4:<br>
+5: 5 8 7 6<br>
+6:<br>
+7:<br>
+8:<br>
+9:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pile[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//找木块a所在的pile和height， 以引用的形式返回调用者</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_block</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span>&amp; p, <span class="keyword">int</span>&amp; h)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> ( p = <span class="number">0</span>; p &lt; n; p++)</span><br><span class="line">		<span class="keyword">for</span> ( h = <span class="number">0</span>; h &lt; pile[p].size(); h++)</span><br><span class="line">			<span class="keyword">if</span> (pile[p][h] == a) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第p堆高度为h的木块上方的所有木块移回原位置</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear_above</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h + <span class="number">1</span>; i &lt; pile[p].size(); i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> b = pile[p][i];</span><br><span class="line">		pile[b].push_back(b);</span><br><span class="line">	&#125;</span><br><span class="line">	pile[p].resize(h + <span class="number">1</span>); <span class="comment">//只保留下标0~h的元素  .resize()改变大小</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第p堆高度为h及其上方的木块整体移动到p2堆的顶部</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pile_onto</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> h, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h; i &lt; pile[p].size(); i++)</span><br><span class="line">		pile[p2].push_back(pile[p][i]);</span><br><span class="line">	pile[p].resize(h);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d:&quot;</span>, i);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; pile[i].size(); j++) <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, pile[i][j]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">string</span> s1, s2;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) pile[i].push_back(i);</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; a &gt;&gt; s2 &gt;&gt; b) &#123;</span><br><span class="line">		<span class="keyword">int</span> pa, pb, ha, hb;</span><br><span class="line">		find_block(a, pa, ha);</span><br><span class="line">		find_block(b, pb, hb);</span><br><span class="line">		<span class="keyword">if</span> (pa == pb) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (s2 == <span class="string">&quot;onto&quot;</span>) clear_above(pb, hb);</span><br><span class="line">		<span class="keyword">if</span> (s1 == <span class="string">&quot;move&quot;</span>) clear_above(pa, ha);</span><br><span class="line">		pile_onto(pa, ha, pb);</span><br><span class="line">	&#125;</span><br><span class="line">	print();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
@@ -710,9 +730,37 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -725,6 +773,16 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href= "/2021/04/18/%E5%85%B3%E4%BA%8E%E8%BF%91%E5%86%B5/" >关于近况</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href= "/2021/04/18/BIT/" >BIT</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -810,11 +868,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="BIT"><span class="iconfont-archer">&#xe606;</span>BIT</span>
+    
         <span class="sidebar-tag-name" data-tags="二分"><span class="iconfont-archer">&#xe606;</span>二分</span>
     
         <span class="sidebar-tag-name" data-tags="字符串"><span class="iconfont-archer">&#xe606;</span>字符串</span>
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
     
@@ -852,6 +914,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
     
         <span class="sidebar-category-name" data-categories="基本数据结构"><span class="iconfont-archer">&#xe60a;</span>基本数据结构</span>
     

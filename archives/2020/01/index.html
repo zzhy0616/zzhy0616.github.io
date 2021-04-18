@@ -361,7 +361,9 @@
         </a>
         <div class="abstract-content">
             
-链表可以使用结构体来存储 struct slist {int prev, value, next;}list[enough];也可以直接使用若干个数组来实现int prev[enough], value[enough], next[enough]; 
+链表可以使用结构体来存储 struct slist {int prev, value, next;}list[enough];
+也可以直接使用若干个数组来实现
+int prev[enough], value[enough], next[enough];
 int del(int x) &#123; 
 // 删除链表中的 x 
 next[prev[x]] = next[x]; 
@@ -370,7 +372,7 @@ prev[next[x]] = prev[x];
 int ins(int x, int y) &#123; 
 // 在 x 的右边 (next) 插入y 
 prev[next[x]] = y; 
-ne...
+n...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -394,8 +396,13 @@ ne...
         </a>
         <div class="abstract-content">
             
-pair 结构体▶ 可以将两种类型融合成一种类型▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair range; range.first = 1, range.second = 3;▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair p; p.first = 12, p.second = 99.2;▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，前一种类 型为 first，后一种为 second▶ 可以用括号赋值，只能在定义的时用pair q(3, ‘a’); // 正确q(4, ‘b’); // 错误，只能定义时用
-make_pair...
+pair 结构体
+▶ 可以将两种类型融合成一种类型
+▶ 就比如一个区间可以用两个端点表示，例如区间 [1,3] pair&lt;int, int&gt; range; range.first = 1, range.second = 3;
+▶ 可以是不同的类型，就比如一个人有学号 12，得分 99.2 pair&lt;int, double&gt; p; p.first = 12, p.second = 99.2;
+▶ 不难发现，使用 pair 应该将两种类型放到尖括号内，前一种类 型为 first，后一种为 second
+▶ 可以用括号赋值，只能在定义的时用
+pair&lt;int, ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -419,7 +426,8 @@ make_pair...
         </a>
         <div class="abstract-content">
             
-二分搜索（Binary Search）1234567template &lt;typename T&gt; static Rank binSearch (T* s,T const &amp; e, Rank lo, Rank hi)&#123;    while( lo &lt; hi)&#123;//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)        Rank mi = (lo + hi) &gt;&gt; 1;//以中点为轴点，经比较后确定深入        e &lt; S[mi] ? hi = mi : lo = mi + 1; //[lo,mi...
+二分搜索（Binary Search）
+1234567template &lt;typename T&gt; static Rank binSearch (T* s,T const &amp; e, Rank lo, Rank hi)&#123;    while( lo &lt; hi)&#123;//不变性：A[0,lo) &lt;= e &lt;= A[ hi,n)        Rank mi = (lo + hi) &gt;&gt; 1;//以中点为轴点，经比较后确定深入        e &lt; S[mi] ? hi = mi : lo = mi + 1; //[lo,m...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -449,7 +457,8 @@ make_pair...
         </a>
         <div class="abstract-content">
             
-Stack123456789101112131415161718#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%...
+Stack
+123456789101112131415161718#include &lt;stack&gt;#include &lt;cstdio&gt;using namespace std;int main()&#123;    stack&lt;int&gt; s;    s.push(1);    s.push(2);    s.push(3);    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;%d\n&quot;, s.top());    s.pop();    printf(&quot;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -473,8 +482,9 @@ Stack123456789101112131415161718#include &lt;stack&gt;#include &lt;cstdio&gt;usi
         </a>
         <div class="abstract-content">
             
-BFS对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)
-123456789101112131415161718192021222324252627282930313233343536373839404142const int INF = 100000000;typedef pair&lt;int, int&gt; P;//输入char maze[MAX_n][MAX_n+1];int N, M;int sx, sy;int gx, gy;int d[MAXN][MAXN];int dx[4] = &#123;1,0,-1,0&#125;, dy [4]= &...
+BFS
+对于同一个状态，宽度优先搜索只经过一次，因此复杂度为O(状态数*转移的方式)
+123456789101112131415161718192021222324252627282930313233343536373839404142const int INF = 100000000;typedef pair&lt;int, int&gt; P;//输入char maze[MAX_n][MAX_n+1];int N, M;int sx, sy;int gx, gy;int d[MAXN][MAXN];int dx[4] = &#123;1,0,-1,0&#125;, dy [4]= ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -498,14 +508,33 @@ BFS对于同一个状态，宽度优先搜索只经过一次，因此复杂度�
         </a>
         <div class="abstract-content">
             
-描述实现一个队列，完成以下功能：
-1.入列2.出列3.询问队列中位置Y是谁一开始队列为空。队列中的位置从1开始（即队头位置为1）。
-输入第一行一个整数n，表示操作个数。
+描述
+实现一个队列，完成以下功能：
+1.入列
+2.出列
+3.询问队列中位置Y是谁
+一开始队列为空。队列中的位置从1开始（即队头位置为1）。
+输入
+第一行一个整数n，表示操作个数。
 接下来n行，每行第一个数字表示操作（见描述）：
-若为数字1，则接下来有一串字符串X，表示将X加入队列。若为数字2，表示出列（保证队列非空），并输出出列的这个人。若为数字3，则接下来有一个整数Y，表示询问队列中位置Y是谁（保证位置Y合法），并输出名字。
-输出将所有操作2和操作3输出，一行一个
-Sample Input111 a1 b1 c3 13 23 321 d3 13 23 3
-Sample Outputabcabc...
+若为数字1，则接下来有一串字符串X，表示将X加入队列。
+若为数字2，表示出列（保证队列非空），并输出出列的这个人。
+若为数字3，则接下来有一个整数Y，表示询问队列中位置Y是谁（保证位置Y合法），并输出名字。
+输出
+将所有操作2和操作3输出，一行一个
+Sample Input
+11
+1 a
+1 b
+1 c
+3 1
+3 2
+3 3
+2
+1 d
+3 1
+3 2
+3 3...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -529,7 +558,8 @@ Sample Outputabcabc...
         </a>
         <div class="abstract-content">
             
-Gnomesort: Naive + Improved123456789101112131415161718naiveGnomesort(s[], n) //single loop but O(n^2)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i]) //GREEDY      i++;//inefficient backtracking      else         &#123;              swap ( s[ i-1], s[i]);            i--;...
+Gnomesort: Naive + Improved
+123456789101112131415161718naiveGnomesort(s[], n) //single loop but O(n^2)  for(int i = 1; i &lt; n; )&#123;      if(i &lt; 1 || s[i-1] &lt;= s[i]) //GREEDY      i++;//inefficient backtracking      else         &#123;              swap ( s[ i-1], s[i]);            i--...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -553,13 +583,15 @@ Gnomesort: Naive + Improved123456789101112131415161718naiveGnomesort(s[], n) //s
         </a>
         <div class="abstract-content">
             
-输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 — n-1的位置。现对这些木块进行操作，操作分为四种。
+输入n，得到编号为0 —- n-1的木块，分别摆放在顺序排列编号为0 – n-1的位置。现对这些木块进行操作，操作分为四种。
 1、move a onto b：把木块a、b上方的木块放回各自的原位，再把a放到b上；
 2、move a over b：把a上方的木块放回各自的原位，再把a放到b所在的木块的堆的上面；
 3、pile a onto b：把b上方的木块放回各自的原位，再把a连同a上的木块整体移到b上；
 4、pile a over b：把a连同a上方木块移到b所在的木块的堆的上面。
 当输入quit时，结束操作并输出0~n-1的位置上的木块情况
-Sample Input10move 9...
+Sample Input
+10
+move...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -811,9 +843,37 @@ Sample Input10move 9...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -826,6 +886,16 @@ Sample Input10move 9...
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href= "/2021/04/18/%E5%85%B3%E4%BA%8E%E8%BF%91%E5%86%B5/" >关于近况</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href= "/2021/04/18/BIT/" >BIT</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -911,11 +981,15 @@ Sample Input10move 9...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="BIT"><span class="iconfont-archer">&#xe606;</span>BIT</span>
+    
         <span class="sidebar-tag-name" data-tags="二分"><span class="iconfont-archer">&#xe606;</span>二分</span>
     
         <span class="sidebar-tag-name" data-tags="字符串"><span class="iconfont-archer">&#xe606;</span>字符串</span>
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
     
@@ -953,6 +1027,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
     
         <span class="sidebar-category-name" data-categories="基本数据结构"><span class="iconfont-archer">&#xe60a;</span>基本数据结构</span>
     
