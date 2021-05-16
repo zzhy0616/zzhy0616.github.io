@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Pollar">
-<meta property="og:url" content="https://zzhy0616.github.io/tags/%E7%94%B5%E5%BD%B1/index.html">
+<meta property="og:url" content="https://zzhy0616.github.io/tags/DP/index.html">
 <meta property="og:site_name" content="Pollar">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Poller">
@@ -355,23 +355,32 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >
+        <a class="abstract-title" href = "/2021/05/11/%E6%A0%91%E4%B8%8ADP/" >
             
-                <span>《心灵奇遇》</span>
+                <span>树上DP</span>
         </a>
         <div class="abstract-content">
-            
+            UVa1220
+题目大意
+公司里n(n≤200)个人形成一个树状结构，除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一
+分析：
+v是u的子节点
+d（u,0）f(u，0)u为根的子树，不选u能得到的最大人数以及方案的唯一性
+f = 1唯一， 0不唯一
+d（u,1）f(u，1)选u能得到的最大人数以及方案的唯一性
+d（u，1）：v都不能选，d（u,1）= Σ{d(v,0)}当且仅当f（v,0）= 1时，f（u，1）= 1
+d（u， 0）v可选可不选 d（u，0） =Σ{max(d(v,0), ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/11</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "电影">电影</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DP">DP</a>
     
 </div>
             
@@ -655,9 +664,41 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -673,7 +714,17 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >《心灵奇遇》</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" >线段树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%91%E4%B8%8ADP/" >树上DP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/photo/" >photo</a>
         </li>
     
     
@@ -770,19 +821,23 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="BIT"><span class="iconfont-archer">&#xe606;</span>BIT</span>
-    
         <span class="sidebar-tag-name" data-tags="二分"><span class="iconfont-archer">&#xe606;</span>二分</span>
     
         <span class="sidebar-tag-name" data-tags="字符串"><span class="iconfont-archer">&#xe606;</span>字符串</span>
-    
-        <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIT树状数组"><span class="iconfont-archer">&#xe606;</span>BIT树状数组</span>
+    
+        <span class="sidebar-tag-name" data-tags="搜索"><span class="iconfont-archer">&#xe606;</span>搜索</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="DP"><span class="iconfont-archer">&#xe606;</span>DP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

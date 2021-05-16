@@ -20,22 +20,22 @@
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="POJ3928 乒乓球比赛 分析 考虑第i个人当裁判 假设ai到ai-1中有ci个比ai小，那么就有（i-1）-ci个比ai大；同理，ci后也是（设为di） i当裁判有 ci（n-1-di） + (i-ci-1)di 种比赛 问题转化为求ai和di ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经考虑过的所有ai种，是否存在一个ai &#x3D; j （x[j] &#x3D; 0表示不存在， x[j] &#x3D;">
+    <meta name="description" content="UVa1220 题目大意 公司里n(n≤200)个人形成一个树状结构，除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一 分析： v是u的子节点 d（u,0）f(u，0)u为根的子树，不选u能得到的最大人数以及方案的唯一性 f &#x3D; 1唯一， 0不唯一 d（u,1）f(u，1)选u能得到的最大人数以及方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BIT">
-<meta property="og:url" content="https://zzhy0616.github.io/2021/04/18/BIT/index.html">
+<meta property="og:title" content="树上DP">
+<meta property="og:url" content="https://zzhy0616.github.io/2021/05/11/%E6%A0%91%E4%B8%8ADP/index.html">
 <meta property="og:site_name" content="Pollar">
-<meta property="og:description" content="POJ3928 乒乓球比赛 分析 考虑第i个人当裁判 假设ai到ai-1中有ci个比ai小，那么就有（i-1）-ci个比ai大；同理，ci后也是（设为di） i当裁判有 ci（n-1-di） + (i-ci-1)di 种比赛 问题转化为求ai和di ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经考虑过的所有ai种，是否存在一个ai &#x3D; j （x[j] &#x3D; 0表示不存在， x[j] &#x3D;">
+<meta property="og:description" content="UVa1220 题目大意 公司里n(n≤200)个人形成一个树状结构，除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一 分析： v是u的子节点 d（u,0）f(u，0)u为根的子树，不选u能得到的最大人数以及方案的唯一性 f &#x3D; 1唯一， 0不唯一 d（u,1）f(u，1)选u能得到的最大人数以及方">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-18T07:33:30.000Z">
-<meta property="article:modified_time" content="2021-05-09T00:29:42.959Z">
+<meta property="article:published_time" content="2021-05-11T09:10:46.000Z">
+<meta property="article:modified_time" content="2021-05-12T10:16:28.749Z">
 <meta property="article:author" content="Poller">
-<meta property="article:tag" content="BIT树状数组">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>BIT · Pollar&#39;s Studio</title>
+    <title>树上DP · Pollar&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -231,7 +231,7 @@
                 <a href="/" >Pollar&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">BIT</a>
+                <a href="#" class="post-name">树上DP</a>
             </div>
     </div>
     
@@ -261,7 +261,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            BIT
+            树上DP
             <!-- 404 -->
             
         </h1>
@@ -280,18 +280,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "BIT树状数组">BIT树状数组</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DP">DP</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">187</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2021/04/18</span>
+                    <span class="post-intro-time">2021/05/11</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -415,16 +415,41 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="POJ3928-乒乓球比赛">POJ3928 乒乓球比赛</h2>
-<h3 id="分析">分析</h3>
-<p>考虑第i个人当裁判<br>
-假设ai到ai-1中有ci个比ai小，那么就有（i-1）-ci个比ai大；同理，ci后也是（设为di）<br>
-i当裁判有 ci（n-1-di） + (i-ci-1)di 种比赛<br>
-问题转化为求ai和di<br>
-ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经考虑过的所有ai种，是否存在一个ai = j<br>
-（x[j] = 0表示不存在， x[j] = 1表示存在）则ci就是前缀和x[1]+ x[2]…x[ai -1]<br>
-然后动态地修该单个元素并求前缀和，然后可以在O（nlogr）(r为ai的上限)的时间内计算出所有的ci，同时可以计算出di</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="UVa1220">UVa1220</h2>
+<h3 id="题目大意">题目大意</h3>
+<p>公司里n(n≤200)个人形成一个树状结构，除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一</p>
+<h3 id="分析：">分析：</h3>
+<p>v是u的子节点<br>
+d（u,0）f(u，0)u为根的子树，不选u能得到的最大人数以及方案的唯一性<br>
+f = 1唯一， 0不唯一<br>
+d（u,1）f(u，1)选u能得到的最大人数以及方案的唯一性<br>
+d（u，1）：v都不能选，d（u,1）= Σ{d(v,0)}当且仅当f（v,0）= 1时，f（u，1）= 1<br>
+d（u， 0）v可选可不选 d（u，0） =Σ{max(d(v,0), d(v,1))}<br>
+如果某个v：d（v,0）= d（v,1)则的f（u，0）= 0<br>
+如果max（d（v,0）， d（v,1））取到的d（v,x）对应的f = 0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">200</span> + <span class="number">4</span>;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; CH[maxn];</span><br><span class="line"><span class="keyword">int</span> D[maxn][<span class="number">2</span>][<span class="number">2</span>], VIS[maxn][<span class="number">2</span>];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; names;</span><br><span class="line"><span class="keyword">int</span> nCnt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getID</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!names.count(s)) names[s] = nCnt++;</span><br><span class="line">    <span class="keyword">return</span> names[s];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> u, <span class="keyword">const</span> <span class="keyword">int</span> pa)</span>  </span>&#123; <span class="comment">//子树u，父节点选中状态，父节点pa</span></span><br><span class="line">    assert(pa == <span class="number">0</span> || pa == <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span>  &amp;d = D[u][pa][<span class="number">0</span>], &amp;cnt = D[u][pa][<span class="number">1</span>];<span class="comment">//最大值，方案数</span></span><br><span class="line">    <span class="keyword">if</span>(VIS[u][pa]) <span class="keyword">return</span> d;</span><br><span class="line">    VIS[u][pa] = <span class="number">1</span>;</span><br><span class="line">    d = <span class="number">0</span>, cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; CH[u].size(); i++) </span><br><span class="line">        d += dp(CH[u][i], <span class="number">0</span>), cnt *= D[CH[u][i]][<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(pa == <span class="number">0</span>)&#123; </span><br><span class="line">    <span class="keyword">int</span> nd  = <span class="number">1</span>, c = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; CH[u].size(); i++) </span><br><span class="line">        nd += dp(CH[u][i], <span class="number">1</span>), c *= D[CH[u][i]][<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(nd == d) cnt += c;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(nd &gt; d) &#123;d = nd, cnt = c;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>), <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> n1, n2;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> N; <span class="built_in">cin</span> &gt;&gt; N &amp;&amp; N; ) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) CH[i].clear();</span><br><span class="line">        names.clear(), nCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(D, <span class="number">0</span>,<span class="keyword">sizeof</span>(D)), <span class="built_in">memset</span>(VIS, <span class="number">0</span>, <span class="keyword">sizeof</span>(VIS));</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n1, names[n1] = nCnt++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; ++i) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; n1 &gt;&gt; n2;</span><br><span class="line">            <span class="keyword">int</span> pa = getID(n2), u = getID(n1);</span><br><span class="line">            CH[pa].push_back(u);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = dp(<span class="number">0</span> , <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %s\n&quot;</span>, ans, (D[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>] == <span class="number">1</span> ? <span class="string">&quot;Yes&quot;</span> : <span class="string">&quot;NO&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="HDU2196-Computer">HDU2196 Computer</h2>
+<p>给定一棵树，边有权值，输出每个点最远的那个点的距离<br>
+Tree（2）为以二为根的子树，<br>
+f（u） ：Tree（u）中距离u的最长距离，h（u）：树中除了子树u外的点到u的最大距离<br>
+f（u）dfs求<br>
+h（u）：<br>
+假设v有k个子v1，v2，v3…vk<br>
+1.v不是f（u）经过的点 h（v）= w(v,u)+ max(f(u), h(u))<br>
+2.v是f（u）经过的点  要选择Tree（u）第二大距离SF（u）<br>
+h(v) = w(v,u) + max(SF(u), h(u))</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> NN = <span class="number">10000</span> + <span class="number">8</span>;</span><br><span class="line">strcut Edge&#123;<span class="keyword">int</span> v, w;&#125; ;</span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; G[NN];</span><br><span class="line"><span class="keyword">int</span> N, F[NN], SF[NN], FV[NN], H[NN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfsF</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> &amp;f = F[u], &amp;sf = SF[u];</span><br><span class="line">    f = <span class="number">0</span>, sf = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; G[u].size(); ++i)&#123;</span><br><span class="line">        <span class="keyword">const</span> Edge&amp; e = G[u][ei];</span><br><span class="line">        <span class="keyword">int</span> nf = dfsF(e.v) + e.w;</span><br><span class="line">        <span class="keyword">if</span>(nf &gt;= f) &#123;</span><br><span class="line">            sf = f; f = nf; FV[u] = e.v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nf &gt; sf) sf = nf;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsH</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; G[u].size(); i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> Edge&amp; e = G[u][i];</span><br><span class="line">        H[e.v] = max(H[u] + FV[u] == e.v ? SF[u] : F[U]) + e.w;</span><br><span class="line">        dfsH(e.v);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>), <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; N &amp;&amp; N) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; ++i) G[i].clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> u = <span class="number">2</span>, v, w ; u &lt;= N; ++u)</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; v &gt;&gt; w, G[v].push_back((Edge)&#123;u,w&#125;);</span><br><span class="line">            dfsF(<span class="number">1</span>), H[<span class="number">1</span>] = <span class="number">0</span>, dfsH(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; ++i) <span class="built_in">cout</span> &lt;&lt; max(F[i], H[i])&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="CSP—S2019-d1t2括号树">CSP—S2019 d1t2括号树</h2>
+<p>分析：<br>
+先手算几个数据<br>
+（）（（））<br>
+i 1- 6分别对答案的贡献 010012 合并010024<br>
+（（）（）<br>
+i 1-5<br>
+00101 合并00102<br>
+可以发现，前括号的前一位有一个已经匹配的后括号<br>
+就可以把当前匹配与前一个匹配合并，并计算这个后括号的贡献值，为前一个后括号的贡献值加一</p>
+
     </article>
     <!-- license  -->
     
@@ -433,16 +458,16 @@ ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经�
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2021/04/18/%E5%85%B3%E4%BA%8E%E8%BF%91%E5%86%B5/" title= "关于近况">
-                    <div class="nextTitle">关于近况</div>
+                <a href= "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" title= "线段树">
+                    <div class="nextTitle">线段树</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2021/04/04/Trie/" title= "Trie">
-                    <div class="prevTitle">Trie</div>
+                <a href= "/2021/04/24/photo/" title= "photo">
+                    <div class="prevTitle">photo</div>
                 </a>
             
         </li>
@@ -554,7 +579,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#POJ3928-%E4%B9%92%E4%B9%93%E7%90%83%E6%AF%94%E8%B5%9B"><span class="toc-number">1.</span> <span class="toc-text">POJ3928 乒乓球比赛</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">分析</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UVa1220"><span class="toc-number">1.</span> <span class="toc-text">UVa1220</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="toc-number">1.1.</span> <span class="toc-text">题目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">分析：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDU2196-Computer"><span class="toc-number">2.</span> <span class="toc-text">HDU2196 Computer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSP%E2%80%94S2019-d1t2%E6%8B%AC%E5%8F%B7%E6%A0%91"><span class="toc-number">3.</span> <span class="toc-text">CSP—S2019 d1t2括号树</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

@@ -368,9 +368,90 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >
+        <a class="abstract-title" href = "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" >
             
-                <span>《心灵奇遇》</span>
+                <span>线段树</span>
+        </a>
+        <div class="abstract-content">
+            动态范围最小值问题
+给定一个n个元素的数组
+设计一个数据结构
+支持修改单个元素，以及计算区间最小值
+如果用STTable 每次修改都需要重新计算d数组，时间无法承受
+因此可以用线段树来解决
+线段树
+根节点是一个长度为2^h的区间
+每i层有2^i个结点，每个节点对应一个长度为2^（h-i）的区间
+最大层编号为h，结点总数为1+2+……+2^h =2^（h+1） - 1，略小于区间长度的两倍
+整个区间长度不是2的整数幂时，虽然叶子不全在同一层，但树的最大编号和结点总数仍然满足上述结论
+最小值查询
+可在每个节点上记录该线段所有元素的最小值
+用一个数组minv保存这个附加信息
+查询时，从根节点开...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/11/%E6%A0%91%E4%B8%8ADP/" >
+            
+                <span>树上DP</span>
+        </a>
+        <div class="abstract-content">
+            UVa1220
+题目大意
+公司里n(n≤200)个人形成一个树状结构，除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一
+分析：
+v是u的子节点
+d（u,0）f(u，0)u为根的子树，不选u能得到的最大人数以及方案的唯一性
+f = 1唯一， 0不唯一
+d（u,1）f(u，1)选u能得到的最大人数以及方案的唯一性
+d（u，1）：v都不能选，d（u,1）= Σ{d(v,0)}当且仅当f（v,0）= 1时，f（u，1）= 1
+d（u， 0）v可选可不选 d（u，0） =Σ{max(d(v,0), ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DP">DP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/04/24/photo/" >
+            
+                <span>photo</span>
         </a>
         <div class="abstract-content">
             
@@ -381,12 +462,6 @@ height:50vh;
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/24</span>
             </div>
             <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "电影">电影</a>
-    
-</div>
             
         </div>
     </article>
@@ -444,14 +519,14 @@ height:50vh;
         <div class="abstract-content">
             POJ3928 乒乓球比赛
 分析
-1.考虑第i个人当裁判
-2.假设a1到ai-1中有ci个比ai小，同理假设ai+1 到an 中有di个比ai小
-所以i当裁判有ci（n - i - di） + (i - c
-i - 1)di种比赛，问题转化为求ci和di
-ci可以这样算：从左到右扫描一次ai， 令x[j]表示目前为止已经考虑过的所有ai中，是否存在一个ai = j（0不存在1存在）
-则ci就是前缀和x[1]+ x[2] + …x[ai -1]
-初始化时x数组清零，计算ci时需要先设 x[ai] = 1,然后求前缀和，需要动态修改单个元素的值并求前缀和——这正是BIT的用法
-O（nlog ...
+考虑第i个人当裁判
+假设ai到ai-1中有ci个比ai小，那么就有（i-1）-ci个比ai大；同理，ci后也是（设为di）
+i当裁判有 ci（n-1-di） + (i-ci-1)di 种比赛
+问题转化为求ai和di
+ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经考虑过的所有ai种，是否存在一个ai = j
+（x[j] = 0表示不存在， x[j] = 1表示存在）则ci就是前缀和x[1]+ x[2]…x[ai -1]
+然后动态地修该单个元素并求前缀和，然后可以在O（nlogr）(r为ai的上限)的时间内计算出所有的ci，同时可以计算出di
+12
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -462,7 +537,7 @@ O（nlog ...
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "BIT">BIT</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "BIT树状数组">BIT树状数组</a>
     
 </div>
             
@@ -557,6 +632,12 @@ ch[i][j]保存结点i的那个编号为j的子结点。
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/11/07</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "搜索">搜索</a>
+    
+</div>
             
         </div>
     </article>
@@ -661,72 +742,6 @@ Code
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/03/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E5%88%86%E7%BB%84/" >
-            
-                <span>二分答案 分组</span>
-        </a>
-        <div class="abstract-content">
-            
-描述
-有n个正整数排成一排，你要将这些数分成m份（同一份中的数字都是连续的，不能隔开），同时数字之和最大的那一份的数字之和尽量小。
-输入
-输入的第一行包含两个正整数n，m。
-接下来一行包含n个正整数。
-输出
-输出一个数，表示最优方案中，数字之和最大的那一份的数字之和。
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455include &lt;bits/stdc++.h&gt;using namespace std;//判断数组a是否能分...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/17/%E9%93%BE%E8%A1%A8/" >
-            
-                <span>链表</span>
-        </a>
-        <div class="abstract-content">
-            
-链表可以使用结构体来存储 struct slist {int prev, value, next;}list[enough];
-也可以直接使用若干个数组来实现
-int prev[enough], value[enough], next[enough];
-int del(int x) &#123; 
-// 删除链表中的 x 
-next[prev[x]] = next[x]; 
-prev[next[x]] = prev[x]; 
-&#125;
-int ins(int x, int y) &#123; 
-// 在 x 的右边 (next) 插入y 
-prev[next[x]] = y; 
-n...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/17</span>
             </div>
             <!-- tags  -->
             
@@ -1092,9 +1107,41 @@ n...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -1110,7 +1157,17 @@ n...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >《心灵奇遇》</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" >线段树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%91%E4%B8%8ADP/" >树上DP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/photo/" >photo</a>
         </li>
     
     
@@ -1207,19 +1264,23 @@ n...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="BIT"><span class="iconfont-archer">&#xe606;</span>BIT</span>
-    
         <span class="sidebar-tag-name" data-tags="二分"><span class="iconfont-archer">&#xe606;</span>二分</span>
     
         <span class="sidebar-tag-name" data-tags="字符串"><span class="iconfont-archer">&#xe606;</span>字符串</span>
-    
-        <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIT树状数组"><span class="iconfont-archer">&#xe606;</span>BIT树状数组</span>
+    
+        <span class="sidebar-tag-name" data-tags="搜索"><span class="iconfont-archer">&#xe606;</span>搜索</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="DP"><span class="iconfont-archer">&#xe606;</span>DP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

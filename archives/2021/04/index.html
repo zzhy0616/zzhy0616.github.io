@@ -355,9 +355,9 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >
+        <a class="abstract-title" href = "/2021/04/24/photo/" >
             
-                <span>《心灵奇遇》</span>
+                <span>photo</span>
         </a>
         <div class="abstract-content">
             
@@ -368,12 +368,6 @@
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/24</span>
             </div>
             <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "电影">电影</a>
-    
-</div>
             
         </div>
     </article>
@@ -431,14 +425,14 @@
         <div class="abstract-content">
             POJ3928 乒乓球比赛
 分析
-1.考虑第i个人当裁判
-2.假设a1到ai-1中有ci个比ai小，同理假设ai+1 到an 中有di个比ai小
-所以i当裁判有ci（n - i - di） + (i - c
-i - 1)di种比赛，问题转化为求ci和di
-ci可以这样算：从左到右扫描一次ai， 令x[j]表示目前为止已经考虑过的所有ai中，是否存在一个ai = j（0不存在1存在）
-则ci就是前缀和x[1]+ x[2] + …x[ai -1]
-初始化时x数组清零，计算ci时需要先设 x[ai] = 1,然后求前缀和，需要动态修改单个元素的值并求前缀和——这正是BIT的用法
-O（nlog ...
+考虑第i个人当裁判
+假设ai到ai-1中有ci个比ai小，那么就有（i-1）-ci个比ai大；同理，ci后也是（设为di）
+i当裁判有 ci（n-1-di） + (i-ci-1)di 种比赛
+问题转化为求ai和di
+ci可以这样算，从左到右扫描数组，令x[j]表示目前为止已经考虑过的所有ai种，是否存在一个ai = j
+（x[j] = 0表示不存在， x[j] = 1表示存在）则ci就是前缀和x[1]+ x[2]…x[ai -1]
+然后动态地修该单个元素并求前缀和，然后可以在O（nlogr）(r为ai的上限)的时间内计算出所有的ci，同时可以计算出di
+12
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -449,7 +443,7 @@ O（nlog ...
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "BIT">BIT</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "BIT树状数组">BIT树状数组</a>
     
 </div>
             
@@ -774,9 +768,41 @@ ch[i][j]保存结点i的那个编号为j的子结点。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -792,7 +818,17 @@ ch[i][j]保存结点i的那个编号为j的子结点。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/%E3%80%8A%E5%BF%83%E7%81%B5%E5%A5%87%E9%81%87%E3%80%8B/" >《心灵奇遇》</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" >线段树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%91%E4%B8%8ADP/" >树上DP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2021/04/24/photo/" >photo</a>
         </li>
     
     
@@ -889,19 +925,23 @@ ch[i][j]保存结点i的那个编号为j的子结点。
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="BIT"><span class="iconfont-archer">&#xe606;</span>BIT</span>
-    
         <span class="sidebar-tag-name" data-tags="二分"><span class="iconfont-archer">&#xe606;</span>二分</span>
     
         <span class="sidebar-tag-name" data-tags="字符串"><span class="iconfont-archer">&#xe606;</span>字符串</span>
-    
-        <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="STL"><span class="iconfont-archer">&#xe606;</span>STL</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIT树状数组"><span class="iconfont-archer">&#xe606;</span>BIT树状数组</span>
+    
+        <span class="sidebar-tag-name" data-tags="搜索"><span class="iconfont-archer">&#xe606;</span>搜索</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="DP"><span class="iconfont-archer">&#xe606;</span>DP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

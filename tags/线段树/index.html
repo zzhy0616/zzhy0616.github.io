@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Pollar">
-<meta property="og:url" content="https://zzhy0616.github.io/archives/2021/03/index.html">
+<meta property="og:url" content="https://zzhy0616.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
 <meta property="og:site_name" content="Pollar">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Poller">
@@ -355,21 +355,39 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/31/ac/" >
+        <a class="abstract-title" href = "/2021/05/13/%E7%BA%BF%E6%AE%B5%E6%A0%91/" >
             
-                <span>编码与解码</span>
+                <span>线段树</span>
         </a>
         <div class="abstract-content">
-            编码与解码
-{a,a,b,c}组成的所有串按照字典序编号为：aabc(1)、aacb(2)、abac(3)、…、cbaa(12)，任给一个字符串，能否方便地求出它的编号？输入acab，则应输出5。不限定字母的种类和个数，输入串为S，d(S)为S的各个排列中，字典序&lt; S的个数,求解d(S)：
-
+            动态范围最小值问题
+给定一个n个元素的数组
+设计一个数据结构
+支持修改单个元素，以及计算区间最小值
+如果用STTable 每次修改都需要重新计算d数组，时间无法承受
+因此可以用线段树来解决
+线段树
+根节点是一个长度为2^h的区间
+每i层有2^i个结点，每个节点对应一个长度为2^（h-i）的区间
+最大层编号为h，结点总数为1+2+……+2^h =2^（h+1） - 1，略小于区间长度的两倍
+整个区间长度不是2的整数幂时，虽然叶子不全在同一层，但树的最大编号和结点总数仍然满足上述结论
+最小值查询
+可在每个节点上记录该线段所有元素的最小值
+用一个数组minv保存这个附加信息
+查询时，从根节点开...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/31</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/13</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
+    
+</div>
             
         </div>
     </article>
